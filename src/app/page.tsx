@@ -1,430 +1,351 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import { 
-  Heart, 
-  ShoppingBag, 
-  Sparkles, 
-  Compass, 
-  ArrowRight,
-  Bookmark,
-  Globe
+  ArrowRight, 
+  GraduationCap, 
+  Cpu, 
+  Scale, 
+  Award, 
+  Mail, 
+  Phone
 } from "lucide-react";
-import {
-  ScallopedMirrorFrame,
-  LocketFrame,
-  GarlandFrame,
-  TimNoveSculpture,
-  LouisEdSculpture,
-  JordanSculpture,
-  BoingSculpture,
-  TulipVaseArt,
-  PalmTreeArt,
-  PinkFaceArt,
-  EveCandleArt,
-  VintagePlateArt,
-  FloatingFoliage
-} from "../components/DecorativeFrames";
 
-// Define product type for interactive prototype
-interface ProductDetail {
-  title: string;
-  price: string;
-  description: string;
-  badge: string;
-  art: React.ReactNode;
-  additionalArt?: React.ReactNode;
-}
+const words = [
+  "English Linguistics Student",
+  "Legal Tech Researcher",
+  "Academic Writer & Editor",
+  "ULIS - VNU Student"
+];
 
-export default function CeramicsBoutique() {
-  // Define available products for interaction
-  const products: Record<string, ProductDetail> = {
-    tulip: {
-      title: "Tulip",
-      price: "$210",
-      description: "Ở Bồ Đào Nha (Portugal), chân nến và bình hoa dáng Tulip này được nhào nặn khéo léo tạo hình ba bông hoa khoe sắc, sau đó phủ một lớp men bóng sang trọng. Một tác phẩm nghệ thuật xúc giác hoàn hảo cho không gian ấm cúng của bạn.",
-      badge: "Best Seller",
-      art: <TulipVaseArt />,
-      additionalArt: <TulipVaseArt />
-    },
-    tim_nove: {
-      title: "Tim Nove",
-      price: "$185",
-      description: "Tác phẩm điêu khắc gốm bầu dục tone màu hồng đào mịn màng. Được chế tác với chiếc mũi màu đất nung và đôi mắt khép nhẹ thư thái. Thể hiện sự bình yên và chất thơ của nghệ thuật nặn đất thủ công.",
-      badge: "Limited Edition",
-      art: <TimNoveSculpture />,
-      additionalArt: <PinkFaceArt />
-    },
-    louis_ed: {
-      title: "Louis Ed",
-      price: "$195",
-      description: "Khối gốm vuông bo góc tông xanh bạc hà thanh mát, nổi bật với tạo hình một con mắt trừu tượng tinh nghịch kiểu cổ điển, kết hợp chiếc mũi đất sét vàng tươi nổi bật. Mang nét phá cách nghệ thuật đương đại.",
-      badge: "New Release",
-      art: <LouisEdSculpture />,
-      additionalArt: <PalmTreeArt />
-    },
-    jordan: {
-      title: "Jordan",
-      price: "$220",
-      description: "Kiệt tác gốm hình giọt nước màu xanh lam nhạt đính kèm những cành hoa trắng muốt trên tóc và các chi tiết dát vàng lấp lánh nhẹ. Đôi mắt cười dịu dàng mang lại may mắn và niềm vui cho căn nhà.",
-      badge: "Artisan Choice",
-      art: <JordanSculpture />,
-      additionalArt: <VintagePlateArt />
-    },
-    boing: {
-      title: "Boing",
-      price: "$160",
-      description: "Tạo hình tròn trĩnh màu đất nung Terracotta ấm áp cùng chiếc kính gọng tròn xoắn ốc ngộ nghĩnh, chiếc mũi to tròn đỏ và nụ cười lượn sóng tinh nghịch. Đậm chất hoài cổ và vui nhộn của ký ức.",
-      badge: "Playful Clay",
-      art: <BoingSculpture />,
-      additionalArt: <EveCandleArt />
+// Typewriter Effect Component
+function Typewriter() {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const typingSpeed = 100;
+  const deletingSpeed = 50;
+  const delayBetweenWords = 2000;
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const fullWord = words[currentWordIndex];
+
+    if (!isDeleting) {
+      if (currentText.length < fullWord.length) {
+        timer = setTimeout(() => {
+          setCurrentText(fullWord.substring(0, currentText.length + 1));
+        }, typingSpeed);
+      } else {
+        timer = setTimeout(() => setIsDeleting(true), delayBetweenWords);
+      }
+    } else {
+      if (currentText.length > 0) {
+        timer = setTimeout(() => {
+          setCurrentText(fullWord.substring(0, currentText.length - 1));
+        }, deletingSpeed);
+      } else {
+        timer = setTimeout(() => {
+          setIsDeleting(false);
+          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+        }, 500);
+      }
     }
-  };
 
-  // State to track currently viewed product on the Right Page
-  const [selectedKey, setSelectedKey] = useState<string>("tulip");
-  const currentProduct = products[selectedKey];
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIndex]);
 
   return (
-    <div className="min-h-screen bg-ceramic-cream py-6 px-4 md:py-12 md:px-8 max-w-7xl mx-auto flex flex-col gap-8">
-      
-      {/* Top Navigation / Brand Info */}
-      <div className="flex justify-between items-center px-4 font-mono text-xs text-ceramic-pink font-semibold">
-        <div className="flex items-center gap-1">
-          <Compass className="h-4 w-4 animate-spin-slow" />
-          <span>EST. 2026</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="bg-ceramic-pink-light/30 px-3 py-1 rounded-full border border-ceramic-pink/10">
-            tactile experience
+    <span className="text-ceramic-pink font-serif italic relative">
+      {currentText}
+      <span className="w-1 h-5 bg-ceramic-pink absolute -right-2 bottom-0.5 animate-pulse" />
+    </span>
+  );
+}
+
+export default function Home() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      } as any
+    },
+  };
+
+  return (
+    <div className="flex flex-col gap-8 py-4 md:py-8 max-w-6xl mx-auto">
+      {/* Hero Section */}
+      <section className="flex flex-col items-center text-center gap-4 py-8 md:py-12 max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="font-script text-4xl md:text-5xl text-ceramic-pink leading-none">
+            hello everyone
           </span>
-          <span className="hidden sm:inline">★ handcrafted catalog</span>
-        </div>
-      </div>
-
-      {/* Main Catalogue Book Container */}
-      <div className="w-full bg-[#FFFDF9] border border-ceramic-pink/15 rounded-[2rem] shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 divide-y-4 lg:divide-y-0 lg:divide-x-4 lg:divide-dashed lg:divide-ceramic-pink/20">
-        
-        {/* ======================================================== */}
-        {/* LEFT PAGE: SHOP PAGE                                     */}
-        {/* ======================================================== */}
-        <div className="flex flex-col justify-between min-h-[700px] bg-[#FFFDF9] pb-8 relative">
-          {/* Header Banner - Scalloped bottom edge */}
-          <div className="scallop-border-bottom bg-ceramic-pink text-white py-6 px-8 flex justify-between items-center relative">
-            <div className="flex items-center gap-3">
-              <span className="font-script text-2xl text-ceramic-pink-light">love</span>
-              <Heart className="h-4 w-4 fill-ceramic-pink-light text-ceramic-pink-light animate-pulse" />
-            </div>
-            
-            <h1 className="font-serif italic font-extrabold text-2xl md:text-3xl tracking-widest text-center text-white">
-              The ceramics
-            </h1>
-            
-            {/* Embedded small circular sketches */}
-            <div className="flex gap-2">
-              <div className="w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center p-1">
-                <svg className="w-full h-full text-white fill-current" viewBox="0 0 100 100">
-                  <path d="M50 20 C35 20, 30 40, 30 60 C30 80, 40 85, 50 85 C60 85, 70 80, 70 60 C70 40, 65 20, 50 20 Z" />
-                </svg>
-              </div>
-              <div className="w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center p-1.5">
-                <svg className="w-full h-full text-white fill-none stroke-current" viewBox="0 0 100 100" strokeWidth="6">
-                  <circle cx="50" cy="40" r="15" />
-                  <path d="M20,80 Q50,55 80,80" />
-                </svg>
-              </div>
-            </div>
+          <h1 className="text-3xl md:text-5xl font-serif font-extrabold tracking-tight text-slate-800 mt-2">
+            Tôi là <span className="text-ceramic-pink font-serif">Nguyễn Minh Hằng</span>
+          </h1>
+          <div className="text-base md:text-xl font-medium text-slate-500 mt-1 h-6">
+            <Typewriter />
           </div>
+        </motion.div>
 
-          {/* Sub-Header Section */}
-          <div className="mt-8 px-6 text-center flex flex-col items-center gap-4">
-            <GarlandFrame>
-              <div className="w-full h-full scale-105">
-                <VintagePlateArt />
-              </div>
-            </GarlandFrame>
-            <p className="font-serif italic text-base md:text-lg text-ceramic-dark max-w-md mt-2">
-              &quot;Working with clay is a tactile experience.&quot;
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="flex flex-wrap gap-4 justify-center mt-4"
+        >
+          <Link
+            href="/projects"
+            className="px-6 py-2.5 rounded-full bg-ceramic-mint text-white font-semibold text-xs tracking-wider uppercase transition-transform duration-300 hover:scale-105 ceramic-shadow"
+          >
+            Trải nghiệm Dự án
+          </Link>
+          <Link
+            href="/contact"
+            className="px-6 py-2.5 rounded-full border border-ceramic-pink/30 text-ceramic-pink hover:bg-ceramic-pink-light/50 font-semibold text-xs tracking-wider uppercase transition-transform duration-300 hover:scale-105"
+          >
+            Liên hệ / CV
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* Sub-Header Handcrafted Ceramic Quote */}
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        className="flex flex-col items-center text-center gap-3 py-6 max-w-xl mx-auto my-2"
+      >
+        {/* Flower garland SVG decoration */}
+        <div className="w-16 h-16 rounded-full bg-ceramic-pink-light border border-ceramic-pink/20 flex items-center justify-center ceramic-shadow">
+          <svg className="w-8 h-8 text-ceramic-pink fill-current" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="10" fill="#FFD166" />
+            <circle cx="50" cy="30" r="8" fill="#D83D6C" />
+            <circle cx="50" cy="70" r="8" fill="#D83D6C" />
+            <circle cx="30" cy="50" r="8" fill="#D83D6C" />
+            <circle cx="70" cy="50" r="8" fill="#D83D6C" />
+          </svg>
+        </div>
+        <h2 className="text-xl md:text-2xl font-serif font-bold text-slate-800 tracking-tight leading-relaxed">
+          &ldquo;Working with language <br />
+          is a <span className="text-ceramic-pink italic">tactile experience.</span>&rdquo;
+        </h2>
+        <div className="w-24 h-0.5 bg-ceramic-pink/20 rounded-full mt-1" />
+      </motion.section>
+
+      {/* Bento Grid Section (Glazed Tiles Look) */}
+      <motion.section 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
+        {/* About Me Card (Colspan 2) */}
+        <motion.div 
+          variants={itemVariants} 
+          className="bento-card p-6 md:p-8 md:col-span-2 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-ceramic-pink mb-4">
+              <GraduationCap className="h-5 w-5" />
+              <span className="font-mono text-[10px] uppercase tracking-widest">About Me</span>
+            </div>
+            <h2 className="text-2xl font-serif font-bold text-slate-800 mb-4 group-hover:text-ceramic-pink transition-colors duration-300">
+              English Linguistics & Legal Tech Researcher
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+              Tôi là sinh viên ngành Ngôn ngữ Anh tại Trường Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội (ULIS - VNU). 
+              Với định hướng kết hợp nghiên cứu ngôn ngữ học thuật chặt chẽ với ứng dụng công nghệ trong pháp luật, 
+              tôi mong muốn kiến tạo các giải pháp kỹ thuật số giúp tối ưu hóa công tác dịch thuật pháp lý và tiếp cận luật pháp.
             </p>
-            <div className="w-16 h-0.5 bg-ceramic-pink/20" />
           </div>
+          <Link 
+            href="/about" 
+            className="inline-flex items-center gap-2 text-ceramic-pink hover:text-slate-800 font-semibold text-xs tracking-wider uppercase group/link mt-4"
+          >
+            Tìm hiểu thêm về tôi 
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
+          </Link>
+        </motion.div>
 
-          {/* Pink Shop Section */}
-          <div className="px-6 my-8">
-            <div className="flex justify-between items-end mb-4 border-b border-ceramic-pink/15 pb-2">
-              <h2 className="font-script text-3xl text-ceramic-pink font-bold">
-                Pink Shop.
-              </h2>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
-                Click to explore details
-              </span>
+        {/* Core Skills Card (Colspan 1) */}
+        <motion.div 
+          variants={itemVariants} 
+          className="bento-card p-6 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-ceramic-pink mb-4">
+              <Cpu className="h-5 w-5" />
+              <span className="font-mono text-[10px] uppercase tracking-widest">Kỹ năng</span>
             </div>
-            
-            {/* Grid of 4 decorative mirror frames */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-2">
-              <button 
-                onClick={() => setSelectedKey("tim_nove")}
-                className={`transition-all duration-300 focus:outline-none ${selectedKey === "tim_nove" ? "scale-105 filter drop-shadow-md" : "hover:scale-102"}`}
-              >
-                <ScallopedMirrorFrame label="tim nove">
-                  <TimNoveSculpture />
-                </ScallopedMirrorFrame>
-              </button>
-              
-              <button 
-                onClick={() => setSelectedKey("louis_ed")}
-                className={`transition-all duration-300 focus:outline-none ${selectedKey === "louis_ed" ? "scale-105 filter drop-shadow-md" : "hover:scale-102"}`}
-              >
-                <ScallopedMirrorFrame label="louis ed">
-                  <LouisEdSculpture />
-                </ScallopedMirrorFrame>
-              </button>
-
-              <button 
-                onClick={() => setSelectedKey("jordan")}
-                className={`transition-all duration-300 focus:outline-none ${selectedKey === "jordan" ? "scale-105 filter drop-shadow-md" : "hover:scale-102"}`}
-              >
-                <ScallopedMirrorFrame label="jordan">
-                  <JordanSculpture />
-                </ScallopedMirrorFrame>
-              </button>
-
-              <button 
-                onClick={() => setSelectedKey("boing")}
-                className={`transition-all duration-300 focus:outline-none ${selectedKey === "boing" ? "scale-105 filter drop-shadow-md" : "hover:scale-102"}`}
-              >
-                <ScallopedMirrorFrame label="boing">
-                  <BoingSculpture />
-                </ScallopedMirrorFrame>
-              </button>
+            <h2 className="text-xl font-serif font-bold text-slate-800 mb-4">
+              Chuyên môn liên ngành
+            </h2>
+            <div className="flex flex-wrap gap-1.5">
+              {[
+                "Ngôn ngữ Anh", 
+                "Viết học thuật", 
+                "Linguistics Research", 
+                "Pháp luật đại cương", 
+                "Legal Tech", 
+                "NLP Simplification", 
+                "Notion Architect", 
+                "Python Basics"
+              ].map((tag) => (
+                <span 
+                  key={tag} 
+                  className="px-2.5 py-1 rounded-lg bg-ceramic-cream border border-ceramic-pink/10 font-mono text-[9px] text-slate-600 transition-colors duration-300 hover:border-ceramic-pink/30 hover:text-ceramic-pink"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
+          <Link 
+            href="/about#skills" 
+            className="inline-flex items-center gap-2 text-ceramic-pink hover:text-slate-800 font-semibold text-xs tracking-wider uppercase group/link mt-6"
+          >
+            Chi tiết kỹ năng
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
+          </Link>
+        </motion.div>
 
-          {/* Works of the Week Section */}
-          <div className="mx-6 p-6 bg-ceramic-blue/40 border border-ceramic-blue/60 rounded-3xl relative overflow-hidden">
-            {/* Tiny stars decorations */}
-            <Sparkles className="absolute top-3 right-3 h-4 w-4 text-ceramic-pink/40 animate-pulse" />
-            
-            <h3 className="font-serif italic font-bold text-lg text-ceramic-pink mb-4 flex items-center gap-2">
-              <span>Works of the week</span>
-              <span className="w-8 h-px bg-ceramic-pink/20" />
+        {/* Featured Project Card (Colspan 2) */}
+        <motion.div 
+          variants={itemVariants} 
+          className="bento-card p-6 md:p-8 md:col-span-2 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-ceramic-pink mb-4">
+              <Scale className="h-5 w-5" />
+              <span className="font-mono text-[10px] uppercase tracking-widest">Dự án nổi bật</span>
+            </div>
+            <h2 className="text-2xl font-serif font-bold text-slate-800 mb-2 group-hover:text-ceramic-pink transition-colors duration-300">
+              Đơn giản hóa văn bản pháp lý bằng AI (Legal NLP)
+            </h2>
+            <p className="text-[10px] text-ceramic-pink font-mono mb-4 uppercase tracking-wider">
+              [Legal Tech Research & Digital Product]
+            </p>
+            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+              Dự án nghiên cứu liên ngành tập trung giải quyết bài toán thuật ngữ pháp lý phức tạp. 
+              Bằng việc ứng dụng mô hình NLP (xử lý ngôn ngữ tự nhiên) kết hợp phân tích cú pháp tiếng Anh, 
+              hệ thống tự động phân tích và chuyển đổi các điều khoản pháp luật rườm rà thành ngôn ngữ dễ hiểu cho đại chúng.
+            </p>
+          </div>
+          <Link 
+            href="/projects" 
+            className="inline-flex items-center gap-2 text-ceramic-pink hover:text-slate-800 font-semibold text-xs tracking-wider uppercase group/link mt-2"
+          >
+            Khám phá kho dự án
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
+          </Link>
+        </motion.div>
+
+        {/* Quick Info & Timeline (Colspan 1) */}
+        <motion.div 
+          variants={itemVariants} 
+          className="bento-card p-6 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center gap-2 text-ceramic-pink mb-4">
+              <Award className="h-5 w-5" />
+              <span className="font-mono text-[10px] uppercase tracking-widest">Thành tựu</span>
+            </div>
+            <h2 className="text-xl font-serif font-bold text-slate-800 mb-3">
+              Mốc học tập & Nghiên cứu
+            </h2>
+            <ul className="space-y-3 font-sans text-xs text-slate-600">
+              <li className="flex items-start gap-2">
+                <span className="text-ceramic-pink mt-0.5">•</span>
+                <div>
+                  <strong className="text-slate-800 font-medium">Sinh viên xuất sắc ULIS</strong>
+                  <p className="text-slate-500 text-[10px]">Chuyên ngành Ngôn ngữ Anh</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-ceramic-pink mt-0.5">•</span>
+                <div>
+                  <strong className="text-slate-800 font-medium">Nghiên cứu khoa học cấp khoa</strong>
+                  <p className="text-slate-500 text-[10px]">Đề tài ứng dụng Công nghệ trong Pháp luật</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <Link 
+            href="/experience" 
+            className="inline-flex items-center gap-2 text-ceramic-pink hover:text-slate-800 font-semibold text-xs tracking-wider uppercase group/link mt-6"
+          >
+            Xem dòng thời gian
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
+          </Link>
+        </motion.div>
+
+        {/* Contact Info (Colspan 3) */}
+        <motion.div 
+          variants={itemVariants} 
+          className="bento-card p-6 md:p-8 md:col-span-3 flex flex-col md:flex-row md:items-center justify-between gap-6 group"
+        >
+          <div className="max-w-xl">
+            <h3 className="text-xl font-serif font-bold text-slate-800 mb-2">
+              Liên kết nghiên cứu & Hợp tác học thuật
             </h3>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-around gap-6">
-              <div className="flex items-center gap-3 bg-white/40 p-2.5 rounded-2xl border border-white/50 shadow-sm">
-                <LocketFrame size="sm">
-                  <TulipVaseArt />
-                </LocketFrame>
-                <div className="text-left font-serif">
-                  <h4 className="text-sm font-bold text-ceramic-pink">Floral Composition</h4>
-                  <p className="text-[10px] font-mono text-slate-500">Edition 1/5</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white/40 p-2.5 rounded-2xl border border-white/50 shadow-sm">
-                <div className="scale-75">
-                  <GarlandFrame>
-                    <PalmTreeArt />
-                  </GarlandFrame>
-                </div>
-                <div className="text-left font-serif">
-                  <h4 className="text-sm font-bold text-ceramic-pink">Clay Oasis</h4>
-                  <p className="text-[10px] font-mono text-slate-500">Edition 2/5</p>
-                </div>
-              </div>
-            </div>
+            <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+              Tôi luôn sẵn sàng đón nhận cơ hội tham gia các dự án nghiên cứu ngôn ngữ, EdTech, LegalTech 
+              hoặc các chương trình phát triển sản phẩm số sáng tạo. Hãy kết nối để cùng thảo luận.
+            </p>
           </div>
-
-          {/* About/Intro Text */}
-          <div className="mt-8 px-6 relative">
-            <FloatingFoliage className="absolute -top-12 -left-6 transform rotate-45 scale-75" />
-            <FloatingFoliage className="absolute -bottom-8 -right-6 transform -rotate-12 scale-75" />
-            
-            <div className="border-t border-ceramic-pink/15 pt-6 flex flex-col md:flex-row gap-6 items-center">
-              <div className="flex-1 text-left">
-                <h4 className="font-serif italic font-bold text-base text-ceramic-pink mb-2">
-                  I love pink is a place that opens up new masters
-                </h4>
-                <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                  Tại xưởng gốm nhỏ xinh của chúng tôi, đất sét không chỉ được nặn bằng tay, mà còn được gửi gắm những câu chuyện đầy cảm xúc. Mỗi sản phẩm là một cá tính độc bản, một tác phẩm nghệ thuật chứa đựng sự mộc mạc và rung cảm xúc giác độc nhất vô nhị.
-                </p>
-              </div>
-              
-              {/* Locket Frames */}
-              <div className="flex gap-2">
-                <LocketFrame size="sm">
-                  <VintagePlateArt />
-                </LocketFrame>
-                <LocketFrame size="sm">
-                  <PinkFaceArt />
-                </LocketFrame>
-              </div>
-            </div>
-          </div>
-
-          {/* UI Mint green buttons */}
-          <div className="mt-8 px-6 flex justify-start">
-            <button 
-              onClick={() => setSelectedKey("tulip")}
-              className="bg-ceramic-mint hover:bg-ceramic-mint-dark text-white rounded-full font-serif font-bold text-xs tracking-wider uppercase px-6 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2"
+          <div className="flex flex-wrap gap-4 md:gap-6 text-xs text-slate-600 font-mono">
+            <a 
+              href="mailto:hanacuti0507@gmail.com" 
+              className="flex items-center gap-1.5 text-slate-600 hover:text-ceramic-pink transition-colors duration-300"
             >
-              <span>Xem bình hoa Tulip mặc định</span>
-              <ArrowRight className="h-3 w-3" />
-            </button>
+              <Mail className="h-3.5 w-3.5 text-ceramic-pink" />
+              hanacuti0507@gmail.com
+            </a>
+            <a 
+              href="tel:0335448265" 
+              className="flex items-center gap-1.5 text-slate-600 hover:text-ceramic-pink transition-colors duration-300"
+            >
+              <Phone className="h-3.5 w-3.5 text-ceramic-pink" />
+              0335448265
+            </a>
+            <a 
+              href="https://www.facebook.com/dmcuocdoi.vn" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-slate-600 hover:text-ceramic-pink transition-colors duration-300"
+            >
+              <svg className="h-3.5 w-3.5 text-ceramic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+              Facebook
+            </a>
           </div>
-        </div>
-
-        {/* ======================================================== */}
-        {/* RIGHT PAGE: PRODUCT PAGE                                 */}
-        {/* ======================================================== */}
-        <div className="flex flex-col justify-between min-h-[700px] bg-[#FFFDF9] pb-8 relative">
-          
-          {/* Header Banner - Scalloped bottom edge */}
-          <div className="scallop-border-bottom bg-ceramic-pink text-white py-6 px-8 flex justify-between items-center relative">
-            <div className="flex items-center gap-2 text-xs font-mono">
-              <Sparkles className="h-3 w-3 animate-spin-slow text-ceramic-pink-light" />
-              <span>Detail Page</span>
-            </div>
-            
-            <span className="font-serif italic font-bold text-sm tracking-wide text-white/90">
-              Product details
-            </span>
-
-            <div className="flex items-center gap-3">
-              <Bookmark className="h-4 w-4 text-white/70 hover:text-white cursor-pointer" />
-              <ShoppingBag className="h-4 w-4 text-white/70 hover:text-white cursor-pointer" />
-            </div>
-          </div>
-
-          {/* Product Info Section */}
-          <div className="mt-8 px-8 flex flex-col md:flex-row gap-8 items-center">
-            {/* Dynamic details */}
-            <div className="flex-1 text-left space-y-4">
-              <div className="inline-block bg-ceramic-pink-light/35 border border-ceramic-pink/15 px-3 py-1 rounded-full text-[10px] font-mono text-ceramic-pink uppercase tracking-widest font-bold">
-                {currentProduct.badge}
-              </div>
-              <h2 className="font-serif font-black text-4xl text-ceramic-pink tracking-tight leading-none">
-                {currentProduct.title}
-              </h2>
-              <div className="text-2xl font-serif font-extrabold text-ceramic-mint-dark">
-                {currentProduct.price}
-              </div>
-              <p className="text-xs text-slate-500 leading-relaxed font-sans border-l-2 border-ceramic-pink/20 pl-3">
-                {currentProduct.description}
-              </p>
-              
-              <div className="pt-2">
-                <button className="bg-ceramic-mint hover:bg-ceramic-mint-dark text-white rounded-full font-serif font-bold text-xs tracking-wider uppercase px-6 py-3 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2">
-                  <ShoppingBag className="h-3.5 w-3.5" />
-                  <span>Mua tác phẩm này</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Featured Image - Beautiful large frame */}
-            <div className="w-full max-w-[240px]">
-              <LocketFrame size="lg">
-                <div className="w-full h-full transform scale-110 hover:scale-115 transition-transform duration-500">
-                  {currentProduct.art}
-                </div>
-              </LocketFrame>
-            </div>
-          </div>
-
-          {/* Cross Selling Block */}
-          <div className="mx-8 mt-8 p-6 bg-ceramic-pink-light/20 border border-ceramic-pink/10 rounded-[2rem] flex flex-col md:flex-row items-center gap-6">
-            <div className="w-24 h-24 flex-shrink-0 bg-white rounded-2xl border border-ceramic-pink/10 shadow-sm flex items-center justify-center overflow-hidden">
-              <div className="scale-90">
-                {currentProduct.additionalArt}
-              </div>
-            </div>
-            <div className="text-left flex-1">
-              <span className="text-[10px] font-mono text-ceramic-pink font-bold uppercase tracking-wider block mb-1">
-                ceramic holder
-              </span>
-              <h4 className="font-serif italic font-bold text-sm text-ceramic-dark">
-                Khay gốm lót nến trang trí đa năng
-              </h4>
-              <p className="text-[10px] text-slate-400 mt-1 leading-relaxed">
-                Được bo viền gợn sóng nghệ thuật, phủ chất men bóng phản chiếu ánh nến lãng mạn. Một sự kết hợp hoàn hảo để trưng bày cùng {currentProduct.title}.
-              </p>
-            </div>
-            <div className="text-right">
-              <div className="text-sm font-serif font-bold text-ceramic-pink">$45</div>
-              <button className="mt-2 text-[10px] font-mono font-bold text-ceramic-mint-dark hover:text-ceramic-mint hover:underline uppercase tracking-wider flex items-center gap-1">
-                <span>Add +</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Text Block */}
-          <div className="mt-8 px-8 text-center">
-            <div className="bg-[#FAF7F2] border border-ceramic-pink/10 rounded-2xl p-4 font-serif italic text-sm text-ceramic-dark max-w-lg mx-auto">
-              &quot;In Portugal, this <span className="font-bold text-ceramic-pink">{currentProduct.title}</span> holder is shaped to three flowers and has a beautifully glazed finish.&quot;
-            </div>
-          </div>
-
-          {/* Similar Products Section */}
-          <div className="mt-8 px-8 border-t border-ceramic-pink/15 pt-6">
-            <h3 className="font-serif italic font-bold text-sm text-ceramic-pink mb-4 text-left">
-              Similar Products
-            </h3>
-            
-            <div className="grid grid-cols-3 gap-4">
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-ceramic-pink/20 bg-white flex items-center justify-center p-2 hover:scale-105 hover:border-ceramic-pink transition-all duration-300">
-                  <PalmTreeArt />
-                </div>
-                <span className="text-[10px] font-serif font-bold text-ceramic-dark mt-2">palm tree</span>
-                <span className="text-[9px] font-mono text-slate-400">$120</span>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-ceramic-pink/20 bg-white flex items-center justify-center p-2 hover:scale-105 hover:border-ceramic-pink transition-all duration-300">
-                  <PinkFaceArt />
-                </div>
-                <span className="text-[10px] font-serif font-bold text-ceramic-dark mt-2">pink face</span>
-                <span className="text-[9px] font-mono text-slate-400">$140</span>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-ceramic-pink/20 bg-white flex items-center justify-center p-2 hover:scale-105 hover:border-ceramic-pink transition-all duration-300">
-                  <EveCandleArt />
-                </div>
-                <span className="text-[10px] font-serif font-bold text-ceramic-dark mt-2">eve candle</span>
-                <span className="text-[9px] font-mono text-slate-400">$110</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer - Pink scalloped top edge */}
-          <div className="scallop-border-top bg-ceramic-pink text-white py-6 px-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 relative">
-            <span className="font-serif italic text-xs text-ceramic-pink-light">
-              © 2026 the ceramics. all rights reserved.
-            </span>
-            
-            {/* Social media blue bubble */}
-            <div className="bg-ceramic-blue text-ceramic-dark font-mono text-xs font-semibold px-4 py-2 rounded-full border border-ceramic-blue/80 shadow-md flex items-center gap-3">
-              <a href="#" className="hover:text-ceramic-pink transition-colors flex items-center gap-1">
-                <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
-                <span>Facebook</span>
-              </a>
-              <span className="text-ceramic-pink/30">|</span>
-              <a href="#" className="hover:text-ceramic-pink transition-colors flex items-center gap-1">
-                <svg className="h-3.5 w-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                <span>Instagram</span>
-              </a>
-              <span className="text-ceramic-pink/30">|</span>
-              <a href="#" className="hover:text-ceramic-pink transition-colors flex items-center gap-1">
-                <Globe className="h-3.5 w-3.5" />
-                <span>Pinterest</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+        </motion.div>
+      </motion.section>
     </div>
   );
 }

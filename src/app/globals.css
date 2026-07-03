@@ -4,108 +4,243 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
-  --color-ceramic-cream: #FAF7F2;
-  --color-ceramic-pink: #D14D72;
-  --color-ceramic-pink-light: #F7C8D4;
-  --color-ceramic-mint: #8EC3B0;
-  --color-ceramic-mint-dark: #6CA592;
-  --color-ceramic-blue: #C0EEF2;
-  --color-ceramic-dark: #3A3834;
+  --color-ceramic-pink: #D83D6C;
+  --color-ceramic-pink-light: #F9E7ED;
+  --color-ceramic-mint: #48A97A;
+  --color-ceramic-mint-light: #EBF7F1;
+  --color-ceramic-cream: #FAF6F0;
+  --color-ceramic-blue: #4EA8DE;
+  --color-ceramic-yellow: #FFD166;
   
+  --font-sans: var(--font-inter), sans-serif;
   --font-serif: var(--font-playfair), serif;
   --font-script: var(--font-great-vibes), cursive;
-  --font-sans: var(--font-quicksand), sans-serif;
+  --font-mono: var(--font-roboto-mono), monospace;
 }
 
 :root {
-  --background: #FAF7F2;
-  --foreground: #3A3834;
+  --background: #FAF6F0;
+  --foreground: #2B2D42;
 }
 
-/* Base styling */
+/* Base Body Styles with custom scrollbar */
 body {
   background-color: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
-  font-family: var(--font-quicksand), sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
-/* Tactile Clay/Paper Noise overlay */
-.clay-noise {
-  position: relative;
-}
-.clay-noise::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.035;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  z-index: 40;
-}
-
-/* Repeating Scallop top/bottom borders */
-.scallop-border-bottom {
-  position: relative;
-}
-.scallop-border-bottom::after {
-  content: "";
-  position: absolute;
-  bottom: -11px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 8' width='24' height='8' fill='%23D14D72'%3E%3Cpath d='M0 0c4 8 8 8 12 0c4 8 8 8 12 0v8H0z'/%3E%3C/svg%3E");
-  background-size: 24px 8px;
-  background-repeat: repeat-x;
-  z-index: 20;
-}
-
-.scallop-border-top {
-  position: relative;
-}
-.scallop-border-top::before {
-  content: "";
-  position: absolute;
-  top: -11px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 8' width='24' height='8' fill='%23D14D72'%3E%3Cpath d='M0 8c4-8 8-8 12 0c4-8 8-8 12 0v-8H0z'/%3E%3C/svg%3E");
-  background-size: 24px 8px;
-  background-repeat: repeat-x;
-  z-index: 20;
-}
-
-/* Custom wavy dividers */
-.wavy-divider-blue {
-  height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 8' width='24' height='8' fill='%23C0EEF2'%3E%3Cpath d='M0 4c6-6 6 6 12 0s6-6 12 0v4H0z'/%3E%3C/svg%3E");
-  background-size: 24px 8px;
-  background-repeat: repeat-x;
-}
-
-.wavy-divider-pink {
-  height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 8' width='24' height='8' fill='%23D14D72'%3E%3Cpath d='M0 4c6-6 6 6 12 0s6-6 12 0v4H0z'/%3E%3C/svg%3E");
-  background-size: 24px 8px;
-  background-repeat: repeat-x;
-}
-
-/* Custom scrollbar for boutique theme */
+/* Custom Scrollbar for Ceramic theme */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F2;
+  background: #FAF6F0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #F7C8D4;
-  border-radius: 5px;
-  border: 2px solid #FAF7F2;
+  background: #D83D6C;
+  border: 3px solid #FAF6F0;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D14D72;
+  background: #B22E54;
+}
+
+/* Scalloped Bottom Edge for Pink Banners */
+.scalloped-bottom {
+  position: relative;
+  background-color: #D83D6C;
+}
+
+.scalloped-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: radial-gradient(circle at 10px -4px, #D83D6C 12px, transparent 13px);
+  background-size: 20px 20px;
+  z-index: 10;
+}
+
+/* Scalloped Top Edge for Pink Footer */
+.scalloped-top {
+  position: relative;
+  background-color: #D83D6C;
+}
+
+.scalloped-top::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: radial-gradient(circle at 10px 16px, #D83D6C 12px, transparent 13px);
+  background-size: 20px 20px;
+  z-index: 10;
+}
+
+/* Ceramic 3D Frame Shadows */
+.ceramic-shadow {
+  box-shadow: 
+    0 8px 24px -8px rgba(43, 45, 66, 0.12), 
+    0 1px 2px rgba(43, 45, 66, 0.05),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+.ceramic-inset {
+  box-shadow: 
+    inset 0 2px 6px rgba(43, 45, 66, 0.08),
+    0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Ornate Mirror and Cloud Frames */
+.frame-mirror-1 {
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.frame-mirror-2 {
+  border-radius: 50% 50% 12% 12% / 45% 45% 10% 10%;
+}
+
+.frame-mirror-3 {
+  border-radius: 50%;
+}
+
+.frame-mirror-4 {
+  border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+}
+
+.frame-cloud-flower {
+  border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%;
+}
+
+/* Soft Wavy/Cloud Panel Edge for Works of the Week */
+.wavy-panel {
+  position: relative;
+  border-radius: 2rem;
+  background-color: #4EA8DE;
+}
+
+/* Document Content Styles for Academic Texts (Lighter/Cream Theme) */
+.document-content {
+  color: #3D405B;
+  font-family: var(--font-sans), sans-serif;
+}
+
+.document-content h1 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #D83D6C;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px dashed rgba(216, 61, 108, 0.15);
+  padding-bottom: 0.5rem;
+}
+
+.document-content h2 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2B2D42;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.document-content h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #48A97A;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.document-content p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #4A4E69;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.document-content ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  color: #4A4E69;
+}
+
+.document-content ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  color: #4A4E69;
+}
+
+.document-content li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.document-content table {
+  width: 100%;
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-collapse: collapse;
+  border: 1px solid rgba(43, 45, 66, 0.1);
+  font-size: 0.8rem;
+  background-color: #FAF8F5;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(43, 45, 66, 0.03);
+}
+
+.document-content th, .document-content td {
+  border: 1px solid rgba(43, 45, 66, 0.08);
+  padding: 0.85rem;
+  text-align: left;
+}
+
+.document-content th {
+  background-color: #F9E7ED;
+  font-weight: 600;
+  color: #D83D6C;
+}
+
+.document-content tr:hover {
+  background-color: rgba(72, 169, 122, 0.04);
+}
+
+/* Bento card styles for Ceramic Theme */
+.bento-card {
+  background-color: #FFFFFF;
+  border: 4px solid #FFFFFF;
+  outline: 1px solid rgba(43, 45, 66, 0.08);
+  border-radius: 2rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 8px 24px -8px rgba(43, 45, 66, 0.08), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  color: #3D405B;
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  border-color: #F9E7ED;
+  outline-color: rgba(216, 61, 108, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 16px 32px -12px rgba(216, 61, 108, 0.15), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
 }
