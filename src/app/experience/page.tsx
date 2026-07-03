@@ -4,12 +4,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { 
-  GraduationCap, 
   Award, 
   Users, 
   Cpu, 
   Bookmark,
-  Calendar
+  Calendar,
+  BookOpen
 } from "lucide-react";
 
 interface Milestone {
@@ -26,55 +26,55 @@ export default function Experience() {
   const milestones: Milestone[] = [
     {
       id: 1,
-      period: "09/2023 - Hiện tại",
-      title: "Sinh viên khoa Ngôn ngữ Anh",
-      subtitle: "Trường Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội (ULIS - VNU)",
-      description: "Học tập chuyên sâu về ngôn ngữ học tiếng Anh, phân tích diễn ngôn và viết học thuật chuyên nghiệp.",
+      period: "Bước đầu bỡ ngỡ",
+      title: "Đối mặt thử thách Kỹ năng số",
+      subtitle: "Học đi đôi với hành trong kỷ nguyên số",
+      description: "Nhìn lại hành trình từ những bước đầu tiên khi thiết lập trang Portfolio này cho đến khi hoàn thành bài tập cuối cùng, cảm xúc lớn nhất trong tôi là sự tự hào. Việc phải vừa tiếp thu kiến thức mới, vừa tìm cách sắp xếp, thiết kế sao cho website cá nhân trở nên trực quan không phải là một thử thách dễ dàng. Nhưng chính quá trình 'vừa học vừa làm' này đã giúp tôi thấy được sự tiến bộ rõ rệt của bản thân qua từng tuần.",
       details: [
-        "Đạt điểm xuất sắc các học phần Viết học thuật và Dịch thuật Anh-Việt chuyên ngành.",
-        "Tích cực tham gia các hội thảo khoa học sinh viên tại trường.",
-        "Xây dựng phương pháp tự học và quản lý tài liệu nghiên cứu hiệu quả."
-      ],
-      icon: <GraduationCap className="h-5 w-5 text-ceramic-pink" />
-    },
-    {
-      id: 2,
-      period: "06/2024 - 10/2024",
-      title: "Nghiên cứu đối chiếu Thuật ngữ Hợp đồng Thương mại",
-      subtitle: "Đề án Nghiên cứu Khoa học Sinh viên cấp khoa",
-      description: "Thực hiện phân tích đối sánh ngữ nghĩa và ngữ cảnh của thuật ngữ pháp lý trong hệ thống Common Law tiếng Anh và luật Việt Nam.",
-      details: [
-        "Thu thập và xử lý bộ ngữ liệu (Corpus) gồm 50 hợp đồng mẫu quốc tế.",
-        "Chỉ ra các lỗi sai phổ biến của người dịch không chuyên khi chuyển ngữ từ khóa pháp lý.",
-        "Hoàn thiện cẩm nang hướng dẫn dài 40 trang phục vụ học tập."
+        "Tự chủ trong thiết lập trang web học thuật cá nhân.",
+        "Từng bước chuyển hóa kiến thức lý thuyết ngôn ngữ sang định dạng web trực quan.",
+        "Nhận thức rõ nét về sự tiến bộ của bản thân qua từng tuần thực hành."
       ],
       icon: <Award className="h-5 w-5 text-ceramic-pink" />
     },
     {
-      id: 3,
-      period: "10/2024 - 02/2025",
-      title: "Đồng sáng lập & Điều phối nhóm 'Legal Tech Students'",
-      subtitle: "Dự án liên ngành Ngoại ngữ & Công nghệ thông tin",
-      description: "Kết nối sinh viên chuyên ngành Ngôn ngữ Anh và Công nghệ thông tin để cùng nhau nghiên cứu giải pháp đơn giản hóa thuật ngữ luật.",
+      id: 2,
+      period: "Quá trình thực hành",
+      title: "Ứng dụng AI & Quản lý dữ liệu khoa học",
+      subtitle: "Tương tác thông minh và có trách nhiệm với công cụ số",
+      description: "Môn học đã mang lại cho tôi những bài học kỹ năng số cực kỳ thực tế. Tôi đã biết cách giao tiếp và sử dụng AI hiệu quả hơn để phục vụ học tập thay vì phụ thuộc vào nó. Đồng thời, việc quản lý dữ liệu ngăn nắp và ứng dụng các công cụ trực tuyến cũng giúp tôi phối hợp mượt mà, khoa học hơn rất nhiều khi làm việc nhóm.",
       details: [
-        "Tổ chức các buổi làm việc nhóm thiết lập cơ sở dữ liệu thuật ngữ.",
-        "Quản lý tiến độ dự án bằng mô hình Kanban trực quan.",
-        "Xây dựng thành công đề cương chi tiết cho sản phẩm chatbot tra cứu song ngữ."
+        "Học cách viết prompt tối ưu thay vì phụ thuộc vào kết quả thô của AI.",
+        "Quản lý dữ liệu học thuật khoa học, lưu trữ thông tin trực quan.",
+        "Sử dụng công cụ cộng tác trực tuyến hỗ trợ thảo luận nhóm trơn tru."
+      ],
+      icon: <Cpu className="h-5 w-5 text-ceramic-pink" />
+    },
+    {
+      id: 3,
+      period: "Bài học cốt lõi",
+      title: "Ý thức bản quyền & Bộ lọc thông tin",
+      subtitle: "Nâng cao trách nhiệm trên không gian mạng",
+      description: "Quan trọng hơn cả, tôi đã nâng cao được ý thức về bảo mật thông tin cá nhân và trách nhiệm tôn trọng bản quyền trên không gian mạng. Tuy nhiên, hành trình này cũng đem lại một thách thức lớn về việc chọn lọc và kiểm chứng thông tin. Giữa thời đại mạng Internet và AI bùng nổ, thông tin rất nhiều nhưng độ chính xác lại là một dấu hỏi lớn. Tôi đã phải học cách tư duy phản biện, liên tục đối chiếu giữa các nguồn để đảm bảo mỗi nội dung đưa vào bài tập đều đáng tin cậy. Vượt qua được thói quen ỷ lại đó chính là bài học lớn nhất mà tôi gặt hái được.",
+      details: [
+        "Tôn trọng quyền tác giả và quy chuẩn trích dẫn tài nguyên số.",
+        "Phát triển tư duy phản biện, đối chiếu nguồn tài liệu nghiêm ngặt.",
+        "Hình thành ý thức bảo mật dữ liệu học tập cá nhân trực tuyến."
       ],
       icon: <Users className="h-5 w-5 text-ceramic-pink" />
     },
     {
       id: 4,
-      period: "03/2025 - Hiện tại",
-      title: "Phát triển công cụ NLP rút gọn văn bản pháp lý",
-      subtitle: "Ứng dụng Công nghệ trong Pháp luật (Legal Tech)",
-      description: "Nghiên cứu áp dụng các thuật toán xử lý ngôn ngữ tự nhiên (NLP) cơ bản bằng Python để rút gọn câu tiếng Anh pháp luật dài.",
+      period: "Kết quả thu hoạch",
+      title: "Vận dụng công cụ & Động lực nghiên cứu",
+      subtitle: "Chuyển hóa tri thức học thuật thành sản phẩm thực tế",
+      description: "Điều tôi cảm thấy tâm đắc nhất chính là việc khả năng vận dụng các công cụ hiện đại với sự hiểu biết, định hướng của bản thân để hoàn thiện không gian Portfolio này. Cảm giác nhìn những kiến thức trên sách vở và các sản phẩm thực hành được chuyển hóa thành một website thực tế, gọn gàng mang lại cho tôi rất nhiều động lực. Nó chứng minh rằng tôi có thể tự chủ trong việc học và làm chủ các công cụ số.",
       details: [
-        "Viết mã Python xử lý tách từ và phân tích cú pháp câu điều khoản mẫu.",
-        "Phát triển hệ thống quy tắc ngữ pháp giúp tái cơ cấu câu dài thành các câu đơn dễ hiểu.",
-        "Thử nghiệm công cụ đạt tỷ lệ cải thiện chỉ số dễ đọc vượt trội."
+        "Chứng minh khả năng tự chủ học tập ngôn ngữ trong thế giới số.",
+        "Chuyển hóa tri thức ngôn ngữ thành sản phẩm số trực quan, khoa học.",
+        "Tự tin ứng dụng kỹ năng số vào các đề tài nghiên cứu ngôn ngữ tương lai."
       ],
-      icon: <Cpu className="h-5 w-5 text-ceramic-pink" />
+      icon: <BookOpen className="h-5 w-5 text-ceramic-pink" />
     }
   ];
 
@@ -101,9 +101,9 @@ export default function Experience() {
     <div className="flex flex-col gap-12 py-4 md:py-8 max-w-6xl mx-auto">
       {/* Title Header */}
       <div className="border-b border-ceramic-pink/15 pb-6">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Timeline</span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Reflection</span>
         <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-800 mt-2">
-          Kinh Nghiệm & Thành Tựu
+          Tổng Kết Hành Trình
         </h1>
       </div>
 
@@ -165,7 +165,7 @@ export default function Experience() {
 
                   {/* Bullet Details */}
                   <ul className="space-y-2 border-t border-ceramic-pink/10 pt-4 mt-2">
-                    {milestones[idx].details.map((detail, dIdx) => (
+                    {milestone.details.map((detail, dIdx) => (
                       <li key={dIdx} className="flex items-start gap-2 text-xs text-slate-500 leading-normal font-sans">
                         <Bookmark className="h-3 w-3 text-ceramic-pink/60 mt-0.5 flex-shrink-0" />
                         <span>{detail}</span>
