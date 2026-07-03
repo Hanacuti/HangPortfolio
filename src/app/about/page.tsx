@@ -36,7 +36,7 @@ export default function About() {
         >
           <div className="flex flex-col items-center text-center">
             {/* Sealed Avatar Graphic (Ceramic Framed circular image) */}
-            <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white/10 outline outline-1 outline-ceramic-pink/30 flex items-center justify-center mb-6 relative group ceramic-shadow">
+            <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-white/10 outline outline-1 outline-ceramic-pink/30 flex items-center justify-center mb-6 relative group ceramic-shadow">
               <img 
                 src={`${basePath}/anhAVT.png`} 
                 alt="Nguyễn Minh Hằng Avatar" 

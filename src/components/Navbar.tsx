@@ -28,24 +28,24 @@ export default function Navbar() {
         <div className="flex h-10 items-center justify-between">
           {/* Brand Logo / Academic Logos */}
           <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <img 
+                src={`${basePath}/vnu_logo.png`} 
+                alt="VNU Logo" 
+                className="h-9 w-auto object-contain select-none" 
+              />
+              <img 
+                src={`${basePath}/ulis_logo.png`} 
+                alt="ULIS Logo" 
+                className="h-9 w-auto object-contain select-none" 
+              />
+            </div>
+            <span className="h-5 w-px bg-white/30" />
             <Link href="/" className="flex items-center gap-1 group">
               <span className="font-script text-2xl text-white hover:text-ceramic-yellow transition-colors duration-300">
                 mhang
               </span>
             </Link>
-            <span className="h-4 w-px bg-white/30" />
-            <div className="flex items-center gap-2">
-              <img 
-                src={`${basePath}/vnu_logo.png`} 
-                alt="VNU Logo" 
-                className="h-6 w-auto object-contain select-none" 
-              />
-              <img 
-                src={`${basePath}/ulis_logo.png`} 
-                alt="ULIS Logo" 
-                className="h-6 w-auto object-contain select-none" 
-              />
-            </div>
           </div>
 
           {/* Desktop Navigation */}
