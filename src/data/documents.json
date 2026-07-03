@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "1. Thao tác cơ bản với tệp tin và thư mục",
+    "slug": "thao-tac-co-ban-voi-tep-tin-va-thu-muc",
+    "originalName": "1. Thao tác cơ bản với tệp tin và thư mục.docx",
+    "wordCount": 391
+  },
+  {
+    "id": 2,
+    "title": "2. Tìm kiếm và đánh giá thông tin học thuật",
+    "slug": "tim-kiem-va-danh-gia-thong-tin-hoc-thuat",
+    "originalName": "2. Tìm kiếm và đánh giá thông tin học thuật.docx",
+    "wordCount": 1146
+  },
+  {
+    "id": 3,
+    "title": "3. Viết prompt hiệu quả cho các tác vụ học tập",
+    "slug": "viet-prompt-hieu-qua-cho-cac-tac-vu-hoc-tap",
+    "originalName": "3. Viết prompt hiệu quả cho các tác vụ học tập.docx",
+    "wordCount": 1427
+  },
+  {
+    "id": 4,
+    "title": "4. Sử dụng công cụ trực tuyến cho dự án nhóm",
+    "slug": "su-dung-cong-cu-truc-tuyen-cho-du-an-nhom",
+    "originalName": "4. Sử dụng công cụ trực tuyến cho dự án nhóm.docx",
+    "wordCount": 1349
+  },
+  {
+    "id": 5,
+    "title": "5. Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung",
+    "slug": "su-dung-ai-tao-sinh-de-ho-tro-sang-tao-noi-dung",
+    "originalName": "5. Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung.docx",
+    "wordCount": 1701
+  },
+  {
+    "id": 6,
+    "title": "6. Sử dụng AI có trách nhiệm trong học tập và nghiên cứu",
+    "slug": "su-dung-ai-co-trach-nhiem-trong-hoc-tap-va-nghien-cuu",
+    "originalName": "6. Sử dụng AI có trách nhiệm trong học tập và nghiên cứu.docx",
+    "wordCount": 1378
+  }
+]

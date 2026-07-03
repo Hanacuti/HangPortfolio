@@ -89,18 +89,18 @@ export default function NightSkyBackground() {
       </div>
 
       {/* Drifting Clouds */}
-      <div className="absolute bottom-[20%] left-0 w-full pointer-events-none opacity-20 animate-drift-slow">
-        <svg className="w-[600px] h-[150px] text-slate-800/20 fill-current" viewBox="0 0 100 30">
+      <div className="absolute bottom-[20%] left-0 w-full pointer-events-none opacity-40 animate-drift-slow">
+        <svg className="w-[600px] h-[150px] text-slate-400/20 fill-current" viewBox="0 0 100 30">
           <path d="M10 20 c 0 -5, 5 -10, 12 -10 c 3 0, 7 2, 9 4 c 3 -4, 8 -7, 14 -7 c 8 0, 14 6, 14 13 c 3 -1, 6 -1, 8 1 c 3 3, 3 8, 0 10 c -1 1, -54 1, -57 -1 c -3 -2, -3 -7, 0 -10 z" />
         </svg>
       </div>
-      <div className="absolute top-[40%] left-0 w-full pointer-events-none opacity-15 animate-drift-medium" style={{ animationDelay: "-30s" }}>
-        <svg className="w-[450px] h-[100px] text-slate-700/25 fill-current" viewBox="0 0 100 30">
+      <div className="absolute top-[40%] left-0 w-full pointer-events-none opacity-35 animate-drift-medium" style={{ animationDelay: "-30s" }}>
+        <svg className="w-[450px] h-[100px] text-slate-400/20 fill-current" viewBox="0 0 100 30">
           <path d="M10 20 c 0 -5, 5 -10, 12 -10 c 3 0, 7 2, 9 4 c 3 -4, 8 -7, 14 -7 c 8 0, 14 6, 14 13 c 3 -1, 6 -1, 8 1 c 3 3, 3 8, 0 10 c -1 1, -54 1, -57 -1 c -3 -2, -3 -7, 0 -10 z" />
         </svg>
       </div>
-      <div className="absolute bottom-10 left-0 w-full pointer-events-none opacity-25 animate-drift-fast" style={{ animationDelay: "-60s" }}>
-        <svg className="w-[300px] h-[80px] text-slate-900/30 fill-current" viewBox="0 0 100 30">
+      <div className="absolute bottom-10 left-0 w-full pointer-events-none opacity-45 animate-drift-fast" style={{ animationDelay: "-60s" }}>
+        <svg className="w-[300px] h-[80px] text-slate-400/25 fill-current" viewBox="0 0 100 30">
           <path d="M10 20 c 0 -5, 5 -10, 12 -10 c 3 0, 7 2, 9 4 c 3 -4, 8 -7, 14 -7 c 8 0, 14 6, 14 13 c 3 -1, 6 -1, 8 1 c 3 3, 3 8, 0 10 c -1 1, -54 1, -57 -1 c -3 -2, -3 -7, 0 -10 z" />
         </svg>
       </div>

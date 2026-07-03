@@ -10,11 +10,12 @@ import {
   Cpu, 
   Scale 
 } from "lucide-react";
+import documentsIndex from "@/data/documents.json";
 
 interface Project {
   id: number;
   title: string;
-  category: "linguistics" | "digital" | "legaltech";
+  category: "linguistics" | "digital" | "legaltech" | "academic";
   categoryLabel: string;
   badge: string;
   problem: string;
@@ -35,6 +36,7 @@ export default function Projects() {
     { value: "linguistics", label: "Nghiên cứu Ngôn ngữ" },
     { value: "digital", label: "Sản phẩm số" },
     { value: "legaltech", label: "Legal Tech" },
+    { value: "academic", label: "Tài liệu học tập" },
   ];
 
   const projectsData: Project[] = [
@@ -97,7 +99,22 @@ export default function Projects() {
       demoLink: "#",
       visualGradient: "from-purple-950 via-slate-900 to-fuchsia-950",
       icon: <Code className="h-6 w-6 text-lunar-gold" />
-    }
+    },
+    ...documentsIndex.map((doc) => ({
+      id: 10 + doc.id,
+      title: doc.title,
+      category: "academic" as const,
+      categoryLabel: "Tài liệu học tập",
+      badge: "Academic Coursework",
+      problem: "Nghiên cứu và rèn luyện kỹ năng số, tin học ứng dụng và cách viết báo cáo khoa học bài bản.",
+      solution: `Biên dịch nội dung từ tệp Word tài liệu gốc, tổ chức lại bố cục trực quan chuẩn web, dung lượng ${doc.wordCount} từ.`,
+      result: "Xem tài liệu học tập được trình bày dạng văn bản HTML cấu trúc sạch, tối ưu tương phản dễ đọc.",
+      techTags: ["Word to HTML", "Mammoth Parser", "Bento Study"],
+      docLink: `/documents/${doc.slug}`,
+      demoLink: `/documents/${doc.slug}`,
+      visualGradient: "from-slate-950 via-[#0B0F19] to-[#05070C]",
+      icon: <FileText className="h-6 w-6 text-lunar-gold" />
+    }))
   ];
 
   const filteredProjects = activeFilter === "all" 
