@@ -42,7 +42,7 @@ export default async function DocumentPage({ params }: PageProps) {
       <div>
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-xs font-semibold font-mono text-ceramic-pink hover:text-slate-800 transition-colors duration-300 group"
+          className="inline-flex items-center gap-2 text-xs font-semibold font-mono text-ceramic-pink hover:text-white transition-colors duration-300 group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
           Quay lại Kho Dự Án
@@ -69,8 +69,8 @@ export default async function DocumentPage({ params }: PageProps) {
         </p>
       </div>
 
-      {/* Main Document Content (Glazed Ceramic Tile Look) */}
-      <div className="bento-card p-6 md:p-10 bg-white border-4 border-white ceramic-shadow">
+      {/* Main Document Content (Dark Glazed Ceramic Look) */}
+      <div className="bento-card p-6 md:p-10 border-4 border-white/5 backdrop-blur-md">
         <article className="document-content" dangerouslySetInnerHTML={{ __html: htmlContent }} />
       </div>
 
@@ -82,9 +82,9 @@ export default async function DocumentPage({ params }: PageProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {similarDocs.map((sDoc, sIdx) => {
             const circleBgColors = [
-              "bg-ceramic-pink-light text-ceramic-pink",
-              "bg-ceramic-mint-light text-ceramic-mint",
-              "bg-ceramic-yellow/30 text-slate-700"
+              "bg-ceramic-pink-light text-ceramic-pink border-ceramic-pink/20",
+              "bg-ceramic-mint-light text-ceramic-mint border-ceramic-mint/20",
+              "bg-ceramic-yellow/15 text-ceramic-yellow border-ceramic-yellow/20"
             ];
             const colorClass = circleBgColors[sIdx % circleBgColors.length];
             return (
@@ -94,10 +94,10 @@ export default async function DocumentPage({ params }: PageProps) {
                 className="flex flex-col items-center group"
               >
                 {/* 3D Ceramic Circle Frame */}
-                <div className={`w-20 h-20 rounded-full ${colorClass} border-4 border-white ceramic-shadow flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
+                <div className={`w-20 h-20 rounded-full ${colorClass} border-4 outline outline-1 outline-white/5 ceramic-shadow flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
                   <FileText className="h-6 w-6" />
                 </div>
-                <span className="text-center text-xs font-serif font-bold text-slate-700 mt-3 group-hover:text-ceramic-pink transition-colors duration-300 line-clamp-2 max-w-[180px]">
+                <span className="text-center text-xs font-serif font-bold text-slate-200 mt-3 group-hover:text-ceramic-pink transition-colors duration-300 line-clamp-2 max-w-[180px]">
                   {sDoc.title}
                 </span>
                 <span className="text-[9px] text-slate-400 font-mono mt-1 uppercase">

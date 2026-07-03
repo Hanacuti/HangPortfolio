@@ -3,12 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { 
-  GraduationCap, 
   Target, 
   Compass
 } from "lucide-react";
 
 export default function About() {
+  const basePath = process.env.NODE_ENV === "production" ? "/HangPortfolio" : "";
+
   return (
     <div className="flex flex-col gap-12 py-4 md:py-8 max-w-6xl mx-auto">
       {/* Title Header */}
@@ -19,7 +20,7 @@ export default function About() {
         className="border-b border-ceramic-pink/15 pb-6"
       >
         <span className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Introduce</span>
-        <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-800 mt-2">
+        <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mt-2">
           Giới Thiệu Bản Thân
         </h1>
       </motion.div>
@@ -34,25 +35,28 @@ export default function About() {
           className="lg:col-span-5 bento-card p-6 md:p-8 flex flex-col justify-between"
         >
           <div className="flex flex-col items-center text-center">
-            {/* Sealed Badge Graphic (Ceramic Look) */}
-            <div className="w-24 h-24 rounded-full bg-ceramic-pink-light border-2 border-ceramic-pink/20 flex items-center justify-center mb-6 relative group ceramic-shadow">
-              <div className="absolute inset-0 rounded-full bg-ceramic-pink/5 blur-md group-hover:bg-ceramic-pink/10 transition-colors" />
-              <GraduationCap className="h-10 w-10 text-ceramic-pink relative" />
+            {/* Sealed Avatar Graphic (Ceramic Framed circular image) */}
+            <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white/10 outline outline-1 outline-ceramic-pink/30 flex items-center justify-center mb-6 relative group ceramic-shadow">
+              <img 
+                src={`${basePath}/anhAVT.png`} 
+                alt="Nguyễn Minh Hằng Avatar" 
+                className="w-full h-full object-cover select-none transition-transform duration-300 group-hover:scale-105"
+              />
             </div>
             
-            <h2 className="text-2xl font-serif font-bold text-slate-800">Nguyễn Minh Hằng</h2>
+            <h2 className="text-2xl font-serif font-bold text-white">Nguyễn Minh Hằng</h2>
             <p className="text-xs text-ceramic-pink font-mono mt-1 uppercase tracking-wider">Linguistics Student</p>
             
-            <div className="w-full border-t border-ceramic-pink/10 my-6" />
+            <div className="w-full border-t border-white/10 my-6" />
             
-            <div className="w-full text-left space-y-4 text-xs text-slate-600 font-sans">
-              <div className="flex justify-between border-b border-ceramic-cream pb-2">
+            <div className="w-full text-left space-y-4 text-xs text-slate-300 font-sans">
+              <div className="flex justify-between border-b border-white/5 pb-2">
                 <span className="text-slate-400 font-mono text-[10px]">ĐẠI HỌC:</span>
-                <span className="text-slate-800 font-medium text-right">ĐH Ngoại ngữ - ĐHQGHN (ULIS)</span>
+                <span className="text-white font-medium text-right">ĐH Ngoại ngữ - ĐHQGHN (ULIS)</span>
               </div>
-              <div className="flex justify-between border-b border-ceramic-cream pb-2">
+              <div className="flex justify-between border-b border-white/5 pb-2">
                 <span className="text-slate-400 font-mono text-[10px]">CHUYÊN NGÀNH:</span>
-                <span className="text-slate-800 font-medium text-right">Ngôn ngữ Anh</span>
+                <span className="text-white font-medium text-right">Ngôn ngữ Anh</span>
               </div>
               <div className="flex justify-between pb-1">
                 <span className="text-slate-400 font-mono text-[10px]">ĐỊNH HƯỚNG:</span>
@@ -61,7 +65,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-ceramic-pink/10 text-center text-[10px] text-slate-400 font-mono">
+          <div className="mt-8 pt-6 border-t border-white/10 text-center text-[10px] text-slate-400 font-mono">
             ULIS VNU Student • Academic Portfolio
           </div>
         </motion.div>
@@ -77,9 +81,9 @@ export default function About() {
           <div className="bento-card p-6 md:p-8">
             <div className="flex items-center gap-2 text-ceramic-pink mb-4">
               <Target className="h-5 w-5" />
-              <h3 className="font-mono text-[10px] uppercase tracking-widest">Tuyên ngôn mục tiêu</h3>
+              <h3 className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Tuyên ngôn mục tiêu</h3>
             </div>
-            <p className="text-slate-600 text-sm leading-relaxed font-sans">
+            <p className="text-slate-300 text-sm leading-relaxed font-sans">
               Trong năm học này, tôi tập trung nâng cấp chất lượng nghiên cứu theo hướng <strong>&quot;Chuẩn học thuật&quot;</strong>: 
               có cấu trúc chặt chẽ, luận điểm đi kèm ví dụ/minh chứng thực tế và quy trình nghiêm ngặt tự kiểm duyệt trước khi xuất bản. 
               Mục tiêu ngắn hạn là làm chủ kỹ năng viết báo cáo khoa học, xây dựng sản phẩm số và tối ưu hóa hiệu suất làm việc nhóm. 
@@ -91,12 +95,12 @@ export default function About() {
           <div className="bento-card p-6 md:p-8">
             <div className="flex items-center gap-2 text-ceramic-pink mb-4">
               <Compass className="h-5 w-5" />
-              <h3 className="font-mono text-[10px] uppercase tracking-widest">Định hướng nghiên cứu</h3>
+              <h3 className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Định hướng nghiên cứu</h3>
             </div>
-            <p className="text-slate-600 text-sm leading-relaxed font-sans">
+            <p className="text-slate-300 text-sm leading-relaxed font-sans">
               Sự kết hợp giữa <strong>Ngôn ngữ học Anh</strong> và <strong>Công nghệ Pháp luật (Legal Tech)</strong> mở ra nhiều hướng tiếp cận mới:
             </p>
-            <ul className="mt-4 space-y-3 text-slate-600 text-sm font-sans list-disc list-inside">
+            <ul className="mt-4 space-y-3 text-slate-300 text-sm font-sans list-disc list-inside">
               <li>Xây dựng bộ dữ liệu (Corpus) song ngữ chuyên ngành luật Anh - Việt phục vụ dịch thuật tư pháp.</li>
               <li>Sử dụng các mô hình học máy (Machine Learning) và NLP để phân tích cấu trúc điều khoản hợp đồng.</li>
               <li>Thiết kế hệ tri thức pháp lý tự phục vụ cho sinh viên nghiên cứu và cộng đồng học tập trực tuyến.</li>

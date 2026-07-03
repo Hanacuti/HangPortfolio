@@ -26,9 +26,12 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nguyễn Minh Hằng | English Linguistics & Legal Tech Researcher",
-  description: "Portfolio cá nhân của Nguyễn Minh Hằng - Sinh viên khoa Ngôn ngữ Anh & Nghiên cứu Công nghệ Pháp luật tại Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội (ULIS - VNU).",
-  keywords: ["Nguyễn Minh Hằng", "ULIS", "Linguistics", "Legal Tech", "English Linguistics", "Portfolio"],
+  title: "Nguyễn Minh Hằng | English Linguistics Student",
+  description: "Portfolio cá nhân của Nguyễn Minh Hằng - Sinh viên khoa Ngôn ngữ Anh tại Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội (ULIS - VNU).",
+  keywords: ["Nguyễn Minh Hằng", "ULIS", "Linguistics", "English Linguistics", "Portfolio"],
+  icons: {
+    icon: "/HangPortfolio/ulis_logo.png",
+  }
 };
 
 export default function RootLayout({
@@ -41,7 +44,7 @@ export default function RootLayout({
       lang="vi"
       className={`${inter.variable} ${playfair.variable} ${greatVibes.variable} ${robotoMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-ceramic-cream text-foreground relative">
+      <body className="min-h-full flex flex-col relative">
         <CeramicBackground />
         <Navbar />
         <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-12 sm:px-8 relative z-10">

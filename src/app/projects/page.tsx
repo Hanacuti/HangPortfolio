@@ -1,23 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { 
-  FileText, 
-  ExternalLink 
-} from "lucide-react";
+import { FileText } from "lucide-react";
 import documentsIndex from "@/data/documents.json";
 
 interface Project {
   id: number;
   title: string;
-  badge: string;
   problem: string; // Nhiệm vụ thực hành
   solution: string; // Kỹ năng phát triển
   result: string; // Bài học rút ra
   techTags: string[];
   docLink: string;
-  demoLink: string;
   visualBg: string;
 }
 
@@ -92,26 +87,42 @@ export default function Projects() {
     return {
       id: idx + 1,
       title: doc.title,
-      badge: "Bài tập lớn (Coursework)",
       problem: details.problem,
       solution: details.solution,
       result: details.result,
       techTags: details.tags,
       docLink: `/documents/${doc.slug}`,
-      demoLink: `/documents/${doc.slug}`,
       visualBg: frameColors[idx % frameColors.length]
     };
   });
+
+  // Restore scroll position
+  useEffect(() => {
+    const savedPos = sessionStorage.getItem("projects_scroll_pos");
+    if (savedPos) {
+      // Small timeout allows Next.js DOM render to stabilize before scrolling
+      const timer = setTimeout(() => {
+        window.scrollTo(0, parseFloat(savedPos));
+        sessionStorage.removeItem("projects_scroll_pos");
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleProjectClick = () => {
+    // Save current scroll coordinates before navigating away
+    sessionStorage.setItem("projects_scroll_pos", window.scrollY.toString());
+  };
 
   return (
     <div className="flex flex-col gap-12 py-4 md:py-8 max-w-6xl mx-auto">
       {/* Title Header */}
       <div className="border-b border-ceramic-pink/15 pb-6">
         <span className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Showcase</span>
-        <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-800 mt-2">
+        <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mt-2">
           Kho Dự Án & Bài Tập
         </h1>
-        <p className="text-slate-500 text-xs max-w-xl font-sans leading-relaxed mt-2">
+        <p className="text-slate-300 text-xs max-w-xl font-sans leading-relaxed mt-2">
           Nơi lưu trữ và trưng bày các bài thực hành kỹ năng số, nghiên cứu học thuật của Nguyễn Minh Hằng.
         </p>
       </div>
@@ -127,7 +138,7 @@ export default function Projects() {
             >
               <div>
                 {/* Decorative Visual Header */}
-                <div className="w-full h-44 bg-ceramic-cream/40 border-b border-ceramic-pink/10 flex items-center justify-center p-6 relative">
+                <div className="w-full h-44 bg-ceramic-cream/20 border-b border-white/5 flex items-center justify-center p-6 relative">
                   {/* Floral details */}
                   <div className="absolute top-3 left-4 opacity-30 select-none">
                     <svg className="w-8 h-8 text-ceramic-mint/30 fill-current" viewBox="0 0 24 24">
@@ -149,44 +160,41 @@ export default function Projects() {
                 {/* Content Details */}
                 <div className="p-6 md:p-8">
                   <div className="flex justify-between items-start gap-4 mb-4">
-                    <h3 className="text-lg md:text-xl font-serif font-extrabold text-slate-800 group-hover:text-ceramic-pink transition-colors duration-300 leading-tight">
+                    <h3 className="text-lg md:text-xl font-serif font-extrabold text-white group-hover:text-ceramic-pink transition-colors duration-300 leading-tight">
                       {project.title}
                     </h3>
-                    <span className="shrink-0 text-[8px] font-mono text-ceramic-pink font-bold uppercase tracking-wider bg-ceramic-pink-light border border-ceramic-pink/15 px-2 py-0.5 rounded-full">
-                      {project.badge}
-                    </span>
                   </div>
 
                   {/* Parent-Child Heading Structure */}
-                  <div className="space-y-4 text-xs font-sans text-slate-600">
-                    <div className="border-b border-ceramic-pink/5 pb-3">
+                  <div className="space-y-4 text-xs font-sans text-slate-300">
+                    <div className="border-b border-white/5 pb-3">
                       <h4 className="text-[10px] font-mono text-slate-400 uppercase tracking-wide mb-1">
                         1. Nhiệm vụ thực hành
                       </h4>
-                      <p className="leading-relaxed font-sans">{project.problem}</p>
+                      <p className="leading-relaxed font-sans text-slate-300">{project.problem}</p>
                     </div>
                     
-                    <div className="border-b border-ceramic-pink/5 pb-3">
+                    <div className="border-b border-white/5 pb-3">
                       <h4 className="text-[10px] font-mono text-slate-400 uppercase tracking-wide mb-1">
                         2. Kỹ năng phát triển
                       </h4>
-                      <p className="leading-relaxed font-sans">{project.solution}</p>
+                      <p className="leading-relaxed font-sans text-slate-300">{project.solution}</p>
                     </div>
 
                     <div className="pb-1">
                       <h4 className="text-[10px] font-mono text-ceramic-pink uppercase tracking-wide font-semibold mb-1">
                         3. Bài học rút ra
                       </h4>
-                      <p className="text-slate-800 leading-relaxed font-medium font-sans">{project.result}</p>
+                      <p className="text-white leading-relaxed font-medium font-sans">{project.result}</p>
                     </div>
                   </div>
 
                   {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-ceramic-pink/10">
+                  <div className="flex flex-wrap gap-1.5 mt-6 pt-4 border-t border-white/10">
                     {project.techTags.map((tag) => (
                       <span 
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-ceramic-cream border border-ceramic-pink/5 text-[9px] font-mono text-slate-500"
+                        className="px-2.5 py-0.5 rounded-md bg-ceramic-cream/50 border border-white/5 text-[9px] font-mono text-slate-300"
                       >
                         {tag}
                       </span>
@@ -196,21 +204,14 @@ export default function Projects() {
               </div>
 
               {/* Action Buttons */}
-              <div className="px-6 pb-6 md:px-8 md:pb-8 flex items-center gap-4 border-t border-ceramic-cream pt-4 mt-2">
+              <div className="px-6 pb-6 md:px-8 md:pb-8 flex items-center border-t border-white/5 pt-4 mt-2">
                 <Link
                   href={project.docLink}
-                  className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-500 hover:text-ceramic-pink transition-colors duration-300"
+                  onClick={handleProjectClick}
+                  className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-ceramic-mint hover:bg-ceramic-mint/90 text-white font-semibold font-serif tracking-wider text-xs transition-colors duration-300"
                 >
-                  <FileText className="h-4 w-4 text-ceramic-pink" />
+                  <FileText className="h-4 w-4" />
                   Xem Tài Liệu
-                </Link>
-                <span className="h-4 w-px bg-ceramic-pink/15" />
-                <Link
-                  href={project.demoLink}
-                  className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-500 hover:text-ceramic-pink transition-colors duration-300"
-                >
-                  <ExternalLink className="h-4 w-4 text-ceramic-pink" />
-                  Đọc Phiên Bản Web
                 </Link>
               </div>
             </div>

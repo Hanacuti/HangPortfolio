@@ -4,11 +4,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
-  --color-ceramic-pink: #D83D6C;
-  --color-ceramic-pink-light: #F9E7ED;
+  --color-ceramic-pink: var(--ceramic-pink-color);
+  --color-ceramic-pink-light: var(--ceramic-pink-light-color);
   --color-ceramic-mint: #48A97A;
-  --color-ceramic-mint-light: #EBF7F1;
-  --color-ceramic-cream: #FAF6F0;
+  --color-ceramic-mint-light: #153324;
+  --color-ceramic-cream: var(--ceramic-cream-color);
   --color-ceramic-blue: #4EA8DE;
   --color-ceramic-yellow: #FFD166;
   
@@ -19,8 +19,11 @@
 }
 
 :root {
-  --background: #FAF6F0;
-  --foreground: #2B2D42;
+  --background: #05070C;
+  --foreground: #F8FAFC;
+  --ceramic-pink-color: #E54D7E;
+  --ceramic-pink-light-color: #2D0F1B;
+  --ceramic-cream-color: #121824;
 }
 
 /* Base Body Styles with custom scrollbar */
@@ -36,11 +39,11 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF6F0;
+  background: #05070C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D83D6C;
-  border: 3px solid #FAF6F0;
+  background: var(--ceramic-pink-color);
+  border: 3px solid #05070C;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -50,7 +53,7 @@ body {
 /* Scalloped Bottom Edge for Pink Banners */
 .scalloped-bottom {
   position: relative;
-  background-color: #D83D6C;
+  background-color: var(--ceramic-pink-color);
 }
 
 .scalloped-bottom::after {
@@ -60,7 +63,7 @@ body {
   left: 0;
   width: 100%;
   height: 12px;
-  background: radial-gradient(circle at 10px -4px, #D83D6C 12px, transparent 13px);
+  background: radial-gradient(circle at 10px -4px, var(--ceramic-pink-color) 12px, transparent 13px);
   background-size: 20px 20px;
   z-index: 10;
 }
@@ -68,7 +71,7 @@ body {
 /* Scalloped Top Edge for Pink Footer */
 .scalloped-top {
   position: relative;
-  background-color: #D83D6C;
+  background-color: var(--ceramic-pink-color);
 }
 
 .scalloped-top::before {
@@ -78,7 +81,7 @@ body {
   left: 0;
   width: 100%;
   height: 12px;
-  background: radial-gradient(circle at 10px 16px, #D83D6C 12px, transparent 13px);
+  background: radial-gradient(circle at 10px 16px, var(--ceramic-pink-color) 12px, transparent 13px);
   background-size: 20px 20px;
   z-index: 10;
 }
@@ -86,15 +89,15 @@ body {
 /* Ceramic 3D Frame Shadows */
 .ceramic-shadow {
   box-shadow: 
-    0 8px 24px -8px rgba(43, 45, 66, 0.12), 
-    0 1px 2px rgba(43, 45, 66, 0.05),
-    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    0 8px 24px -8px rgba(0, 0, 0, 0.4), 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 
 .ceramic-inset {
   box-shadow: 
-    inset 0 2px 6px rgba(43, 45, 66, 0.08),
-    0 1px 2px rgba(255, 255, 255, 0.8);
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(255, 255, 255, 0.05);
 }
 
 /* Ornate Mirror and Cloud Frames */
@@ -103,7 +106,7 @@ body {
 }
 
 .frame-mirror-2 {
-  border-radius: 50% 50% 12% 12% / 45% 45% 10% 10%;
+  border-radius: 50% 50 12% 12% / 45% 45% 10% 10%;
 }
 
 .frame-mirror-3 {
@@ -125,9 +128,9 @@ body {
   background-color: #4EA8DE;
 }
 
-/* Document Content Styles for Academic Texts (Lighter/Cream Theme) */
+/* Document Content Styles for Academic Texts (Dark Theme) */
 .document-content {
-  color: #3D405B;
+  color: #E2E8F0;
   font-family: var(--font-sans), sans-serif;
 }
 
@@ -135,10 +138,10 @@ body {
   font-family: var(--font-serif), serif;
   font-size: 1.85rem;
   font-weight: 700;
-  color: #D83D6C;
+  color: var(--ceramic-pink-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
-  border-bottom: 2px dashed rgba(216, 61, 108, 0.15);
+  border-bottom: 2px dashed rgba(229, 77, 126, 0.25);
   padding-bottom: 0.5rem;
 }
 
@@ -146,7 +149,7 @@ body {
   font-family: var(--font-serif), serif;
   font-size: 1.4rem;
   font-weight: 600;
-  color: #2B2D42;
+  color: #F8FAFC;
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
 }
@@ -162,8 +165,8 @@ body {
 
 .document-content p {
   font-size: 0.95rem;
-  line-height: 1.7;
-  color: #4A4E69;
+  line-height: 1.75;
+  color: #CBD5E1;
   margin-top: 0.85rem;
   margin-bottom: 0.85rem;
 }
@@ -175,7 +178,7 @@ body {
   margin-bottom: 0.85rem;
   padding-left: 1.25rem;
   font-size: 0.95rem;
-  color: #4A4E69;
+  color: #CBD5E1;
 }
 
 .document-content ol {
@@ -185,7 +188,7 @@ body {
   margin-bottom: 0.85rem;
   padding-left: 1.25rem;
   font-size: 0.95rem;
-  color: #4A4E69;
+  color: #CBD5E1;
 }
 
 .document-content li {
@@ -198,51 +201,52 @@ body {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
   border-collapse: collapse;
-  border: 1px solid rgba(43, 45, 66, 0.1);
-  font-size: 0.8rem;
-  background-color: #FAF8F5;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  background-color: rgba(18, 24, 38, 0.5);
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(43, 45, 66, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .document-content th, .document-content td {
-  border: 1px solid rgba(43, 45, 66, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.85rem;
   text-align: left;
 }
 
 .document-content th {
-  background-color: #F9E7ED;
+  background-color: var(--ceramic-pink-light-color);
   font-weight: 600;
-  color: #D83D6C;
+  color: var(--ceramic-pink-color);
 }
 
 .document-content tr:hover {
-  background-color: rgba(72, 169, 122, 0.04);
+  background-color: rgba(72, 169, 122, 0.08);
 }
 
-/* Bento card styles for Ceramic Theme */
+/* Bento card styles for Ceramic Theme (Dark Men Glaze) */
 .bento-card {
-  background-color: #FFFFFF;
-  border: 4px solid #FFFFFF;
-  outline: 1px solid rgba(43, 45, 66, 0.08);
+  background-color: rgba(18, 24, 38, 0.65);
+  border: 4px solid rgba(255, 255, 255, 0.08);
+  outline: 1px solid rgba(229, 77, 126, 0.15);
   border-radius: 2rem;
+  backdrop-filter: blur(12px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 
-    0 8px 24px -8px rgba(43, 45, 66, 0.08), 
-    inset 0 2px 4px rgba(255, 255, 255, 0.9);
-  color: #3D405B;
+    0 12px 24px -10px rgba(0, 0, 0, 0.5), 
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
   overflow: hidden;
 }
 
 .bento-card:hover {
-  border-color: #F9E7ED;
-  outline-color: rgba(216, 61, 108, 0.25);
+  border-color: rgba(229, 77, 126, 0.45);
+  outline-color: rgba(229, 77, 126, 0.65);
   transform: translateY(-4px);
   box-shadow: 
-    0 16px 32px -12px rgba(216, 61, 108, 0.15), 
-    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    0 16px 32px -12px rgba(229, 77, 126, 0.3), 
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
 /* Cherry Blossom Petals (Hoa đào rơi) animation */
