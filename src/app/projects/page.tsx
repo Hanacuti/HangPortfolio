@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   FileText, 
@@ -232,21 +233,41 @@ export default function Projects() {
 
               {/* Interaction Buttons */}
               <div className="px-6 pb-6 md:px-8 md:pb-8 flex items-center gap-4">
-                <a
-                  href={project.docLink}
-                  className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-300 hover:text-lunar-gold transition-colors duration-300"
-                >
-                  <FileText className="h-4 w-4" />
-                  Xem Tài Liệu/Mã
-                </a>
+                {project.docLink.startsWith("http") || project.docLink === "#" ? (
+                  <a
+                    href={project.docLink}
+                    className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-300 hover:text-lunar-gold transition-colors duration-300"
+                  >
+                    <FileText className="h-4 w-4" />
+                    Xem Tài Liệu/Mã
+                  </a>
+                ) : (
+                  <Link
+                    href={project.docLink}
+                    className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-300 hover:text-lunar-gold transition-colors duration-300"
+                  >
+                    <FileText className="h-4 w-4" />
+                    Xem Tài Liệu/Mã
+                  </Link>
+                )}
                 <span className="h-4 w-px bg-white/10" />
-                <a
-                  href={project.demoLink}
-                  className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-300 hover:text-lunar-gold transition-colors duration-300"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Trải Nghiệm Live
-                </a>
+                {project.demoLink.startsWith("http") || project.demoLink === "#" ? (
+                  <a
+                    href={project.demoLink}
+                    className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-300 hover:text-lunar-gold transition-colors duration-300"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Trải Nghiệm Live
+                  </a>
+                ) : (
+                  <Link
+                    href={project.demoLink}
+                    className="flex items-center gap-1.5 text-xs font-semibold font-mono text-slate-300 hover:text-lunar-gold transition-colors duration-300"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Trải Nghiệm Live
+                  </Link>
+                )}
               </div>
             </motion.div>
           ))}
