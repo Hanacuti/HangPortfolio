@@ -159,6 +159,10 @@ async function convertAll() {
         // Fix headings I and II
         html = html.replace(/<h2><a id="I\.\s*Giới\s+thiệu\s+chung\s*"><\/a>Giới thiệu chung<\/h2>/gi, '<h2><a id="I._Giới_thiệu_chung_"></a>I. Giới thiệu chung</h2>');
         html = html.replace(/<h2><a id="II\.\s*Nội\s+dung\s+so\s+sánh\s*"><\/a>Nội dung so sánh<\/h2>/gi, '<h2><a id="II._Nội_dung_so_sánh_"></a>II. Nội dung so sánh</h2>');
+        
+        // Restore Roman numerals III and IV in heading text
+        html = html.replace(/<h2><a id="III\.\s*Danh mục tài liệu tham khảo\s*"><\/a>Danh mục tài liệu tham khảo<\/h2>/gi, '<h2><a id="III. Danh mục tài liệu tham khảo"></a>III. Danh mục tài liệu tham khảo</h2>');
+        html = html.replace(/<h2><a id="IV\.\s*Bảng tổng hợp và Đánh giá độ tin cậy\s*"><\/a>Bảng tổng hợp và Đánh giá độ tin cậy của nguồn thông tin<\/h2>/gi, '<h2><a id="IV. Bảng tổng hợp và Đánh giá độ tin cậy"></a>IV. Bảng tổng hợp và Đánh giá độ tin cậy của nguồn thông tin</h2>');
 
         // Clean up Celce-Murcia, Flowerdew and publisher split typos
         html = html.replace(/Celce-Mur\s+cia/gi, 'Celce-Murcia');
@@ -199,7 +203,7 @@ async function convertAll() {
           html = "<h1>SỬ DỤNG CÔNG CỤ TRỰC TUYẾN CHO DỰ ÁN NHÓM</h1>" + html;
         }
         html = html.replace(/<p>Phần I\.\s*Giới thiệu chung<\/p>/gi, "<h2>Phần I. Giới thiệu chung</h2>");
-        html = html.replace(/<p>Phần 2\.\s*Nhật ký minh chứng<\/p>/gi, "<h2>Phần II. Nhật ký minh chứng</h2>");
+        html = html.replace(/<p>Phần 2\.\s*Nhật ký minh chứng<\/p>/gi, "<h2>Phần 2. Nhật ký minh chứng</h2>");
         html = html.replace(/<p>2\.2\.\s*Công cụ soạn thảo tài liệu cộng tác\s*\(Google Docs\s*\)<\/p>/gi, "<h3>2.2. Công cụ soạn thảo tài liệu cộng tác (Google Docs)</h3>");
         html = html.replace(/<p>2\.3\.\s*Công cụ giao tiếp nhóm\s*\(Microsoft Teams\s*\/\s*Discord\s*\)<\/p>/gi, "<h3>2.3. Công cụ giao tiếp nhóm (Microsoft Teams / Discord)</h3>");
         if (!html.includes("<h3>2.1. Công cụ quản lý tiến độ (Trello)</h3>")) {
