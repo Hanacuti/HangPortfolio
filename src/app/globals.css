@@ -164,6 +164,15 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.document-content h4 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #94A3B8;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
 .document-content p {
   font-size: 1.05rem;
   line-height: 1.75;

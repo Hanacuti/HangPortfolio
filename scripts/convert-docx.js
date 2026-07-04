@@ -83,16 +83,26 @@ async function convertAll() {
       // 1. Clean empty list items
       html = html.replace(/<li>\s*(?:&nbsp;|&#xa0;|\u00A0|<br\s*\/?>)*\s*<\/li>/gi, "");
 
-      // 2. Remove list items wrapping images and wrap images in Tailwind centering container
-      html = html.replace(/<li>\s*(<img[^>]*>)\s*<\/li>/gi, '$1');
-      html = html.replace(/<li>\s*(<img[^>]*>)\s*/gi, '$1');
-      html = html.replace(/(<img[^>]*>)\s*<\/li>/gi, '$1');
-      
-      html = html.replace(/<img([^>]*)>/gi, (match) => {
-        if (match.includes('class="') || match.includes("class='")) {
+      // 2. Wrap and center images inside paragraphs and list items correctly
+      // Paragraph-wrapped images
+      html = html.replace(/<p>\s*<img([^>]*?)\/?>\s*<\/p>/gi, (match, attrs) => {
+        return `<div class="flex justify-center my-6 text-center w-full"><div class="inline-block mx-auto"><img ${attrs.trim()} /></div></div>`;
+      });
+
+      // List-wrapped images
+      html = html.replace(/<li>\s*<img([^>]*?)\/?>\s*<\/li>/gi, (match, attrs) => {
+        return `<li class="list-none flex justify-center my-6 text-center w-full"><div class="inline-block mx-auto"><img ${attrs.trim()} /></div></li>`;
+      });
+      html = html.replace(/<li>\s*<p>\s*<img([^>]*?)\/?>\s*<\/p>\s*<\/li>/gi, (match, attrs) => {
+        return `<li class="list-none flex justify-center my-6 text-center w-full"><div class="inline-block mx-auto"><img ${attrs.trim()} /></div></li>`;
+      });
+
+      // Fallback for any other unwrapped images
+      html = html.replace(/<img([^>]*?)\/?>/gi, (match, attrs) => {
+        if (attrs.includes('class="') || attrs.includes("class='") || attrs.includes('data:image')) {
           return match;
         }
-        return `<div class="flex justify-center my-6 text-center w-full"><div class="inline-block mx-auto"><img${match.substring(4)} /></div></div>`;
+        return `<div class="flex justify-center my-6 text-center w-full"><div class="inline-block mx-auto"><img ${attrs.trim()} /></div></div>`;
       });
 
       // 3. Restore list letter prefixes (e.g. a), b)) from Mammoth's anchor IDs
@@ -118,6 +128,10 @@ async function convertAll() {
       
       html = html.replace(/<ol><li>\s*<\/li><\/ol>/gi, '');
       html = html.replace(/<ul><li>\s*<\/li><\/ul>/gi, '');
+      
+      // Global cleanups for invalid nesting
+      html = html.replace(/<p>\s*<\/p>/gi, '');
+      html = html.replace(/<p>(<h[1-6][^>]*>)/gi, '$1');
 
       // 6. Merge adjacent split tables
       html = html.replace(/<\/tbody>\s*<\/table>\s*<table[^>]*>\s*<tbody>/gi, "");
@@ -134,8 +148,29 @@ async function convertAll() {
         html = html.replace(/<p>(\d+)\.\s*(?:&nbsp;|&#xa0;|\u00A0)*\s*<strong>([^<]+):<\/strong>\s*(?:&nbsp;|&#xa0;|\u00A0)*/gi, "<h3>$1. $2</h3><p>");
       } 
       else if (slug === "tim-kiem-va-danh-gia-thong-tin-hoc-thuat") {
-        html = html.replace(/<h2>2\.\s*Cấu trúc Ngữ pháp<\/h2>/gi, "<h3>2. Cấu trúc Ngữ pháp</h3>");
-        html = html.replace(/<h2>3\.\s*Giọng điệu và Tính khách quan<\/h2>/gi, "<h3>3. Giọng điệu và Tính khách quan</h3>");
+        // Fix duplicate/unclosed section list structures
+        html = html.replace(/<ol>\s*<li>\s*<a id="1\.\s*Đặc điểm Từ vựng\s*"><\/a>\s*<strong>Đặc điểm Từ vựng<\/strong>/gi, '<h3><a id="1. Đặc điểm Từ vựng"></a>1. Đặc điểm Từ vựng</h3>');
+        html = html.replace(/<h2><a id="2\.\s*Cấu trúc Ngữ pháp\s*"><\/a>Cấu trúc Ngữ pháp<\/h2>/gi, '<h3><a id="2. Cấu trúc Ngữ pháp"></a>2. Cấu trúc Ngữ pháp</h3>');
+        html = html.replace(/<h2><a id="3\.\s*Giọng điệu và Tính khách quan\s*"><\/a>Giọng điệu và Tính khách quan<\/h2>/gi, '<h3><a id="3. Giọng điệu và Tính khách quan"></a>3. Giọng điệu và Tính khách quan</h3>');
+        
+        // Remove trailing unclosed tags from section II
+        html = html.replace(/<\/li>\s*<\/ol>\s*<h2><a id="III\.\s*Danh mục tài liệu/gi, '<h2><a id="III. Danh mục tài liệu');
+
+        // Fix headings I and II
+        html = html.replace(/<h2><a id="I\.\s*Giới\s+thiệu\s+chung\s*"><\/a>Giới thiệu chung<\/h2>/gi, '<h2><a id="I._Giới_thiệu_chung_"></a>I. Giới thiệu chung</h2>');
+        html = html.replace(/<h2><a id="II\.\s*Nội\s+dung\s+so\s+sánh\s*"><\/a>Nội dung so sánh<\/h2>/gi, '<h2><a id="II._Nội_dung_so_sánh_"></a>II. Nội dung so sánh</h2>');
+
+        // Clean up Celce-Murcia, Flowerdew and publisher split typos
+        html = html.replace(/Celce-Mur\s+cia/gi, 'Celce-Murcia');
+        html = html.replace(/Flowerde\s+w/gi, 'Flowerdew');
+        html = html.replace(/Nhà XB: SAGE<\/li>\s*<\/ul>\s*<p>Publications\.<\/p>/gi, 'Nhà XB: SAGE Publications</li></ul>');
+
+        // Merge evaluation table split criteria rows (e.g. Biber 2006, Nesi & Gardner 2012)
+        html = html.replace(/<\/ul>\s*<\/td>\s*<td>([\s\S]*?)<\/td>\s*<\/tr>\s*<tr>\s*<td><\/td>\s*<td><\/td>\s*<td><\/td>\s*<td>\s*-\s*Cập nhật:\s*([\s\S]*?)<\/td>\s*<td><\/td>\s*<\/tr>/gi,
+          '<li>Cập nhật: $2</li></ul></td><td>$1</td></tr>');
+
+        // Clean up last table cell broken tags
+        html = html.replace(/Tier 3 \(Trung bình<\/p>\s*<p>- Phục vụ tra cứu thực tế\)/gi, 'Tier 3 (Trung bình - Phục vụ tra cứu thực tế)');
       } 
       else if (slug === "viet-prompt-hieu-qua-cho-cac-tac-vu-hoc-tap") {
         html = html.replace(/<p><strong>NGHIÊN CỨU VÀ TỐI ƯU HÓA PROMPT ENGINEERING TRONG HỌC TẬP<\/strong><\/p>/gi, "<h1>NGHIÊN CỨU VÀ TỐI ƯU HÓA PROMPT ENGINEERING TRONG HỌC TẬP</h1>");
@@ -145,8 +180,19 @@ async function convertAll() {
         html = html.replace(/<h2>4\.\s*Phân tích hiệu quả Prompt\s*\(Tư duy phản biện\s*\)<\/h2>/gi, "<h2>4. Phân tích hiệu quả Prompt (Tư duy phản biện)</h2>");
         html = html.replace(/<h2>5\.\s*Tổng hợp nguyên tắc và mẹo viết Prompt hiệu quả<\/h2>/gi, "<h2>5. Tổng hợp nguyên tắc và mẹo viết Prompt hiệu quả</h2>");
         html = html.replace(/<p><strong>2\.1\.\s*Phiên bản 1:\s*Prompt Cơ bản\s*\(Simple Prompt\s*\)<\/strong><\/p>/gi, "<h3>2.1. Phiên bản 1: Prompt Cơ bản (Simple Prompt)</h3>");
-        html = html.replace(/<p><strong>2\.2\.\s*Phiên bản 2:\s*Prompt Cải tiến\s*\(Structured Prompt\s*\)<\/strong><\/p>/gi, "<h3>2.2. Phiên bản 2: Prompt Cải tiến (Structured Prompt)</h3>");
-        html = html.replace(/<p><strong>2\.3\.\s*Prompt Nâng cao\s*\(Advanced Prompt\s*-\s*Kết hợp Role-play,\s*Chain-of-Thought\s*và\s*Few-shot\s*\)<\/strong><\/p>/gi, "<h3>2.3. Phiên bản 3: Prompt Nâng cao (Advanced Prompt)</h3>");
+        html = html.replace(/<p><strong>2\.2\.\s*Prompt Cải tiến\s*\(Structured Prompt\s*\)<\/strong><\/p>/gi, "<h3>2.2. Phiên bản 2: Prompt Cải tiến (Structured Prompt)</h3>");
+        
+        // Restore heading 2.3 and subheadings Workflow / Công thức RCAI
+        html = html.replace(/<p><strong>2\.3\.\s*Prompt Nâng cao\s*\(Advanced Prompt\s*-\s*Kết hợp Role-play,\s*Chain-of-Thought\s*và\s*Few-shot\s*\)<\/strong><\/p>/gi, "<h3>2.3. Phiên bản 3: Prompt Nâng cao (Advanced Prompt - Kết hợp Role-play, Chain-of-Thought và Few-shot)</h3>");
+        html = html.replace(/<p><strong>Workflow\/Instructions:<\/strong><\/p>/gi, "<h4>Workflow/Instructions:</h4>");
+        html = html.replace(/<p><strong>Công thức R-C-A-I[^<]*<\/strong><\/p>/gi, "<h4>Công thức R-C-A-I (Role - Context - Action - Instruction)</h4>");
+
+        // Close unclosed outer list before section 2 starts
+        html = html.replace(/<\/ul>\s*(<h2>2\.\s*Xây dựng các phiên bản Prompt<\/h2>)/gi, '</ul></ul>$1');
+
+        // Fix unclosed prompt quotes
+        html = html.replace(/<p>"Hãy giải thích khái niệm Proof of Work \(PoW\) trong công nghệ Blockchain\.\s*<ul>/gi, '<p>"Hãy giải thích khái niệm Proof of Work (PoW) trong công nghệ Blockchain."</p><ul>');
+        html = html.replace(/dễ hiểu\."<\/li>/gi, 'dễ hiểu.</li>');
       } 
       else if (slug === "su-dung-cong-cu-truc-tuyen-cho-du-an-nhom") {
         if (!html.includes("<h1>SỬ DỤNG CÔNG CỤ TRỰC TUYẾN CHO DỰ ÁN NHÓM</h1>")) {
@@ -159,6 +205,15 @@ async function convertAll() {
         if (!html.includes("<h3>2.1. Công cụ quản lý tiến độ (Trello)</h3>")) {
           html = html.replace(/(Nhóm chúng tôi đã thiết lập một bảng công việc\s*\(Board\)\s*trên Trello)/gi, "<h3>2.1. Công cụ quản lý tiến độ (Trello)</h3><p>$1");
         }
+        // Map single-item lists to headings
+        html = html.replace(/<ol>\s*<li>Các công cụ hợp tác trực tuyến được sử dụng<\/li>\s*<\/ol>/gi, '<h3>Các công cụ hợp tác trực tuyến được sử dụng</h3>');
+        html = html.replace(/<ol>\s*<li>Phân tích hiệu quả của công cụ đối với cá nhân<\/li>\s*<\/ol>/gi, '<h3>Phân tích hiệu quả của công cụ đối với cá nhân</h3>');
+
+        // Fix bullet list items
+        html = html.replace(/<li>Nhiệm vụ:<\/li>\s*<\/ul>\s*<p>\+\s*Quản lý, sắp xếp lịch trình thực hiện<\/p>\s*<p>\+\s*Tổng hợp kiến thức<\/p>/gi, '<li>Nhiệm vụ:<ul><li>Quản lý, sắp xếp lịch trình thực hiện</li><li>Tổng hợp kiến thức</li></ul></li></ul>');
+
+        // Fix section III. Kết luận H2 heading placement
+        html = html.replace(/(<p>Qua việc áp dụng các công cụ trực tuyến)/gi, '<h2>Phần III. Kết luận</h2>$1');
       } 
       else if (slug === "su-dung-ai-tao-sinh-de-ho-tro-sang-tao-noi-dung") {
         html = html.replace(/<h1><a id="PHẦN_I:_GIỚI_THIỆU_CHUNG_VỀ_DỰ_ÁN_"><\/a>PHẦN I: GIỚI THIỆU CHUNG VỀ DỰ ÁN<\/h1>/gi, '<h2><a id="PHẦN_I:_GIỚI_THIỆU_CHUNG_VỀ_DỰ_ÁN_"></a>PHẦN I: GIỚI THIỆU CHUNG VỀ DỰ ÁN</h2>');
@@ -173,13 +228,35 @@ async function convertAll() {
         html = html.replace(/<h2><a id="2\.3\._Giai_đoạn_3:_Thiết_kế_và_Hoàn_thiện"><\/a>Giai đoạn 3: Thiết kế và Hoàn thiện sản phẩm\s*\(Canva AI\s*-\s*Magic Design\)<\/h2>/gi, '<h3><a id="2.3._Giai_đoạn_3:_Thiết_kế_và_Hoàn_thiện"></a>2.3. Giai đoạn 3: Thiết kế và Hoàn thiện sản phẩm (Canva AI - Magic Design)</h3>');
         html = html.replace(/<h2>Cách chỉnh sửa và tích hợp của cá nhân<\/h2>/gi, "<h3>Cách chỉnh sửa và tích hợp của cá nhân</h3>");
         html = html.replace(/<h2>Tôi tải hình ảnh chất lượng cao từ AI về, sử dụng phần mềm đồ họa cá nhân để cắt bỏ một vài chi tiết thừa ở góc camera mà AI vẽ lỗi \(ngón chân rùa bị dị dạng nhẹ\), sau đó tăng độ tương phản để bức ảnh sẵn sàng làm hình nền chủ đạo cho slide\.<\/h2>/gi, "<h3>Cách chỉnh sửa và tích hợp của cá nhân</h3><p>Tôi tải hình ảnh chất lượng cao từ AI về, sử dụng phần mềm đồ họa cá nhân để cắt bỏ một vài chi tiết thừa ở góc camera mà AI vẽ lỗi (ngón chân rùa bị dị dạng nhẹ), sau đó tăng độ tương phản để bức ảnh sẵn sàng làm hình nền chủ đạo cho slide.</p>");
+        
+        // Correct b) Cách chỉnh sửa H2 heading to H3
         html = html.replace(/<h2><a id="b\)_Cách_chỉnh_sửa_và_tích_hợp_của_cá_nhâ"><\/a>Cách chỉnh sửa và tích hợp của cá nhân<\/h2>/gi, '<h3><a id="b)_Cách_chỉnh_sửa_và_tích_hợp_của_cá_nhâ"></a>Cách chỉnh sửa và tích hợp của cá nhân</h3>');
+        
         html = html.replace(/<h2><a id="4\.1\._Những_điểm_mạnh_và_Hạn_chế_cốt_lõi_"><\/a>Những điểm mạnh và Hạn chế cốt lõi của AI<\/h2>/gi, '<h3><a id="4.1._Những_điểm_mạnh_và_Hạn_chế_cốt_lõi_"></a>4.1. Những điểm mạnh và Hạn chế cốt lõi của AI</h3>');
         html = html.replace(/<h2><a id="4\.2\._Sự_thay_đổi_trong_quy_trình_sáng_tạ"><\/a>Sự thay đổi trong quy trình sáng tạo cá nhân<\/h2>/gi, '<h3><a id="4.2._Sự_thay_đổi_trong_quy_trình_sáng_tạ"></a>4.2. Sự thay đổi trong quy trình sáng tạo cá nhân</h3>');
         html = html.replace(/<h2><a id="4\.3\._Các_vấn_đề_đạo_đức_cần_cân_nhắc_"><\/a>Các vấn đề đạo đức cần cân nhắc<\/h2>/gi, '<h3><a id="4.3._Các_vấn_đề_đạo_đức_cần_cân_nhắc_"></a>4.3. Các vấn đề đạo đức cần cân nhắc</h3>');
+
+        // Apply unique stage labels for repeating H3 subheadings
+        let gdCount = 0;
+        html = html.replace(/(<h3><a id="[^"]*"><\/a>)?Cách chỉnh sửa và tích hợp của cá nhân<\/h3>/gi, (match) => {
+          gdCount++;
+          const labels = ['2.1.b) Cách chỉnh sửa và tích hợp của cá nhân', '2.2.b) Cách chỉnh sửa và tích hợp của cá nhân', '2.3.b) Cách chỉnh sửa và tích hợp của cá nhân'];
+          return `<h3>${labels[gdCount - 1] || 'Cách chỉnh sửa và tích hợp của cá nhân'}</h3>`;
+        });
+
+        // Convert single-item lists to sub-headers
+        let qtrCount = 0;
+        html = html.replace(/<ol>\s*<li><strong>(Quá trình Prompting và Kết quả nhận được)<\/strong><\/li>\s*<\/ol>/gi, (match, text) => {
+          qtrCount++;
+          const labels = ['2.1.a)', '2.2.a)', '2.3.a)'];
+          return `<h4>${labels[qtrCount - 1] || 'a)'} ${text}</h4>`;
+        });
+
+        // Heals split paragraphs
+        html = html.replace(/cung cấp cho tôi 5 số liệu<\/p>\s*<p>thống kê chấn động nhất/gi, 'cung cấp cho tôi 5 số liệu thống kê chấn động nhất');
+        html = html.replace(/Thực trạng,<\/p>\s*<p>\(2\)/gi, 'Thực trạng, (2)');
       } 
       else if (slug === "su-dung-ai-co-trach-nhiem-trong-hoc-tap-va-nghien-cuu") {
-        html = html.replace(/<p><strong>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU<\/strong><\/p>/gi, "<h1>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU</h1>");
         html = html.replace(/<p><strong>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU<\/strong><\/p>/gi, "<h1>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU</h1>");
         html = html.replace(/<p><strong>I\.\s*Phân tích chính sách của nhà trường về sử dụng AI trong học thuật<\/strong><\/p>/gi, "<h2>I. Phân tích chính sách của nhà trường về sử dụng AI trong học thuật</h2>");
         html = html.replace(/<p><strong>II\.\s*Nhật ký thực nghiệm:\s*Sử dụng AI hỗ trợ thực hiện nhiệm vụ học tập<\/strong><\/p>/gi, "<h2>II. Nhật ký thực nghiệm: Sử dụng AI hỗ trợ thực hiện nhiệm vụ học tập</h2>");
@@ -192,6 +269,9 @@ async function convertAll() {
         html = html.replace(/<p><strong>1\.\s*Ranh giới giữa hỗ trợ hợp lý và gian lận học thuật<\/strong><\/p>/gi, "<h3>1. Ranh giới giữa hỗ trợ hợp lý và gian lận học thuật</h3>");
         html = html.replace(/<p><strong>2\.\s*Vấn đề về quyền sở hữu trí tuệ và trích dẫn<\/strong><\/p>/gi, "<h3>2. Vấn đề về quyền sở hữu trí tuệ và trích dẫn</h3>");
         html = html.replace(/<p><strong>3\.\s*Tác động đến quá trình học tập và phát triển kỹ năng<\/strong><\/p>/gi, "<h3>3. Tác động đến quá trình học tập và phát triển kỹ năng</h3>");
+
+        // Merge floating prompt label lists and prompt quotes
+        html = html.replace(/<ul>\s*<li><strong>(Prompt \d+ [^<]+)<\/strong><\/li>\s*<\/ul>\s*<p>("[^"]+")<\/p>/gi, '<ul><li><strong>$1</strong> $2</li></ul>');
       }
 
       // Save HTML fragment
