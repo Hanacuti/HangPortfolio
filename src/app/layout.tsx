@@ -52,15 +52,15 @@ export default function RootLayout({
         </main>
         
         {/* Playful Handcrafted Deep Pink Scalloped Footer */}
-        <footer className="w-full scalloped-top bg-ceramic-pink py-12 text-center text-xs text-white/90 mt-16 relative z-10">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
+        <footer className="w-full scalloped-top bg-ceramic-pink py-6 text-center text-xs text-white/90 mt-12 relative z-10">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4">
             {/* Social media bubbles */}
             <div className="flex flex-wrap justify-center gap-4">
               <a 
                 href="mailto:hanacuti0507@gmail.com" 
-                className="w-12 h-12 rounded-full bg-[#E54D7E] hover:bg-[#E54D7E]/90 flex items-center justify-center ceramic-shadow transition-transform duration-300 hover:scale-105 border-2 border-white/20"
+                className="w-10 h-10 rounded-full bg-[#E54D7E] hover:bg-[#E54D7E]/90 flex items-center justify-center ceramic-shadow transition-transform duration-300 hover:scale-105 border-2 border-white/20"
               >
-                <span className="font-mono font-bold text-xs text-white">Mail</span>
+                <span className="font-mono font-bold text-[10px] text-white">Mail</span>
               </a>
             </div>
             
