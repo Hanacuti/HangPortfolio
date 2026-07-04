@@ -3,8 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { 
-  Target, 
-  Compass
+  Target
 } from "lucide-react";
 
 export default function About() {
@@ -32,7 +31,7 @@ export default function About() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="lg:col-span-5 bento-card p-6 md:p-8 flex flex-col justify-between"
+          className="lg:col-span-6 bento-card p-6 md:p-8 flex flex-col justify-between"
         >
           <div className="flex flex-col items-center text-center">
             {/* Sealed Avatar Graphic (Ceramic Framed circular image) */}
@@ -75,10 +74,10 @@ export default function About() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="lg:col-span-7 flex flex-col gap-6"
+          className="lg:col-span-6 flex flex-col gap-6"
         >
           {/* Tuyên ngôn mục tiêu */}
-          <div className="bento-card p-6 md:p-8">
+          <div className="bento-card p-6 md:p-8 h-full flex flex-col justify-center">
             <div className="flex items-center gap-2 text-ceramic-pink mb-4">
               <Target className="h-5 w-5" />
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Tuyên ngôn mục tiêu</h3>
@@ -89,22 +88,6 @@ export default function About() {
               Mục tiêu ngắn hạn là làm chủ kỹ năng viết báo cáo khoa học, xây dựng sản phẩm số và tối ưu hóa hiệu suất làm việc nhóm. 
               Tầm nhìn dài hạn là nghiên cứu giải pháp ứng dụng công nghệ nhằm hỗ trợ học tập và thực thi pháp luật một cách minh bạch, an toàn.
             </p>
-          </div>
-
-          {/* Tầm nhìn nghiên cứu */}
-          <div className="bento-card p-6 md:p-8">
-            <div className="flex items-center gap-2 text-ceramic-pink mb-4">
-              <Compass className="h-5 w-5" />
-              <h3 className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Định hướng nghiên cứu</h3>
-            </div>
-            <p className="text-slate-300 text-sm leading-relaxed font-sans">
-              Sự kết hợp giữa <strong>Ngôn ngữ học Anh</strong> và <strong>Công nghệ Pháp luật (Legal Tech)</strong> mở ra nhiều hướng tiếp cận mới:
-            </p>
-            <ul className="mt-4 space-y-3 text-slate-300 text-sm font-sans list-disc list-inside">
-              <li>Xây dựng bộ dữ liệu (Corpus) song ngữ chuyên ngành luật Anh - Việt phục vụ dịch thuật tư pháp.</li>
-              <li>Sử dụng các mô hình học máy (Machine Learning) và NLP để phân tích cấu trúc điều khoản hợp đồng.</li>
-              <li>Thiết kế hệ tri thức pháp lý tự phục vụ cho sinh viên nghiên cứu và cộng đồng học tập trực tuyến.</li>
-            </ul>
           </div>
         </motion.div>
       </section>

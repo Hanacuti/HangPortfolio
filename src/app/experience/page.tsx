@@ -19,7 +19,7 @@ export default function Experience() {
         transition={{ duration: 0.5 }}
         className="border-b border-ceramic-pink/15 pb-6"
       >
-        <span className="font-mono text-[10px] uppercase tracking-widest text-ceramic-pink">Reflection</span>
+        <span className="font-mono text-xs uppercase tracking-widest text-ceramic-pink">Reflection</span>
         <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mt-2">
           Tổng Kết Hành Trình
         </h1>
@@ -35,7 +35,7 @@ export default function Experience() {
         {/* Intro */}
         <div className="border-b border-white/5 pb-6">
           <p className="text-slate-300 text-sm md:text-base leading-relaxed font-sans">
-            Nhìn lại hành trình từ những bước đầu tiên khi thiết lập trang Portfolio này cho đến khi hoàn thành bài tập cuối cùng, cảm xúc lớn nhất trong tôi là sự tự hào. Việc phải vừa tiếp thu kiến thức mới, vừa tìm cách sắp xếp, thiết kế sao cho website cá nhân trở nên trực quan không phải là một thử thách dễ dàng. Nhưng chính quá trình &quot;vừa học vừa làm&quot; này đã giúp tôi thấy được sự tiến bộ rõ rệt của bản thân qua từng tuần.
+            Nhìn lại toàn bộ chặng đường từ những nét phác thảo đầu tiên cho trang Portfolio này đến khi đặt dấu chấm hết cho bài tập cuối cùng, trong tôi đọng lại niềm tự hào lớn lao. Việc vừa phải dung nạp một khối lượng kiến thức mới, vừa phải trăn trở thiết kế giao diện sao cho tối ưu và trực quan là một bài toán không hề đơn giản. Thế nhưng, chính trải nghiệm thực tế &quot;học đi đôi với hành&quot; ấy đã trở thành thước đo chính xác nhất cho sự trưởng thành và tiến bộ của tôi qua từng tuần.
           </p>
         </div>
 
@@ -48,10 +48,10 @@ export default function Experience() {
           </div>
           <div className="md:col-span-11 space-y-2">
             <h3 className="text-base font-serif font-bold text-white">
-              1. Kỹ năng số thực tế & Làm chủ Trợ lý AI
+              1. Nâng tầm kỹ năng số và tư duy cộng tác cùng AI
             </h3>
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              Môn học đã mang lại cho tôi những bài học kỹ năng số cực kỳ thực tế. Tôi đã biết cách giao tiếp và sử dụng AI hiệu quả hơn để phục vụ học tập thay vì phụ thuộc vào nó. Đồng thời, việc quản lý dữ liệu ngăn nắp và ứng dụng các công cụ trực tuyến cũng giúp tôi phối hợp mượt mà, khoa học hơn rất nhiều khi làm việc nhóm.
+              Môn học đã trang bị cho tôi những kỹ năng số mang tính ứng dụng cao trong thực tế. Thay vị phụ thuộc thụ động, tôi đã biết cách làm chủ và &quot;giao tiếp&quot; hiệu quả với các trợ lý AI để tối ưu hóa quá trình học tập. Bên cạnh đó, tư duy quản lý dữ liệu một cách khoa học cùng việc thành thạo các nền tảng trực tuyến đã giúp tôi kết nối, phối hợp với các thành viên trong nhóm một cách nhịp nhàng và chuyên nghiệp hơn.
             </p>
           </div>
         </div>
@@ -65,10 +65,10 @@ export default function Experience() {
           </div>
           <div className="md:col-span-11 space-y-2">
             <h3 className="text-base font-serif font-bold text-white">
-              2. Đạo đức mạng & Bộ lọc thông tin phản biện
+              2. Trách nhiệm số và bộ lọc tư duy phản biện
             </h3>
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              Quan trọng hơn cả, tôi đã nâng cao được ý thức về bảo mật thông tin cá nhân và trách nhiệm tôn trọng bản quyền trên không gian mạng. Tuy nhiên, hành trình này cũng đem lại một thách thức lớn về việc chọn lọc và kiểm chứng thông tin. Giữa thời đại mạng Internet và AI bùng nổ, thông tin rất nhiều nhưng độ chính xác lại là một dấu hỏi lớn. Tôi đã phải học cách tư duy phản biện, liên tục đối chiếu giữa các nguồn để đảm bảo mỗi nội dung đưa vào bài tập đều đáng tin cậy. Vượt qua được thói quen ỷ lại đó chính là bài học lớn nhất mà tôi gặt hái được.
+              Một trong những giá trị lớn nhất tôi gặt hái được chính là ý thức bảo mật thông tin và tinh thần tôn trọng quyền tác giả trên không gian mạng. Trong bối cảnh bùng nổ thông tin và sự trỗi dậy của công nghệ AI, việc xác thực độ tin cậy của dữ liệu là một thử thách không nhỏ. Tôi đã rèn luyện cho mình thói quen tư duy phản biện, chủ động đối chiếu đa nguồn để đảm bảo tính chính xác cho mọi nội dung. Vượt qua sự cám dỗ của việc &quot;ỷ lại&quot; vào công nghệ chính là bước tiến lớn nhất của tôi.
             </p>
           </div>
         </div>
@@ -82,19 +82,19 @@ export default function Experience() {
           </div>
           <div className="md:col-span-11 space-y-2">
             <h3 className="text-base font-serif font-bold text-white">
-              3. Vận dụng tri thức & Tự chủ trong thế giới số
+              3. Làm chủ công nghệ và chuyển hóa tri thức ngôn ngữ
             </h3>
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              Điều tôi cảm thấy tâm đắc nhất chính là việc khả năng vận dụng các công cụ hiện đại với sự hiểu biết, định hướng của bản thân để hoàn thiện không gian Portfolio này. Cảm giác nhìn những kiến thức trên sách vở và các sản phẩm thực hành được chuyển hóa thành một website thực tế, gọn gàng mang lại cho tôi rất nhiều động lực. Nó chứng minh rằng tôi có thể tự chủ trong việc học và làm chủ các công cụ số.
+              Điều khiến tôi tâm đắc nhất là việc biến các công cụ hiện đại thành phương tiện để hiện thực hóa ý tưởng của chính mình. Cảm giác nhìn những lý thuyết học thuật khô khan trên sách vở được chuyển hóa thành một không gian Portfolio trực quan, gọn gàng đã tiếp thêm cho tôi rất nhiều động lực. Hành trình này là minh chứng rõ ràng cho thấy tôi hoàn toàn có thể tự chủ trong học tập và tự tin làm chủ công nghệ trong kỷ nguyên số.
             </p>
           </div>
         </div>
 
         {/* Footer info tag */}
-        <div className="mt-4 pt-6 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
+        <div className="mt-4 pt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
           <span>Nguyễn Minh Hằng • ULIS VNU</span>
-          <span className="flex items-center gap-1.5 text-ceramic-pink">
-            <Award className="h-3.5 w-3.5" />
+          <span className="flex items-center gap-1.5 text-ceramic-pink font-semibold">
+            <Award className="h-4 w-4" />
             Độc lập & Tự chủ
           </span>
         </div>
