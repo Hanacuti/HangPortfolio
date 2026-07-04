@@ -227,21 +227,21 @@ async function convertAll() {
         html = html.replace(/<h2><a id="2\.2\._Giai_đoạn_2:_Sáng_tạo_tư_liệu_hình_"><\/a>Giai đoạn 2: Sáng tạo tư liệu hình ảnh độc bản\s*\(Bing Image Creator\s*\/\s*DALL-E 3\)<\/h2>/gi, '<h3><a id="2.2._Giai_đoạn_2:_Sáng_tạo_tư_liệu_hình_"></a>2.2. Giai đoạn 2: Sáng tạo tư liệu hình ảnh độc bản (Bing Image Creator / DALL-E 3)</h3>');
         html = html.replace(/<h2><a id="2\.3\._Giai_đoạn_3:_Thiết_kế_và_Hoàn_thiện"><\/a>Giai đoạn 3: Thiết kế và Hoàn thiện sản phẩm\s*\(Canva AI\s*-\s*Magic Design\)<\/h2>/gi, '<h3><a id="2.3._Giai_đoạn_3:_Thiết_kế_và_Hoàn_thiện"></a>2.3. Giai đoạn 3: Thiết kế và Hoàn thiện sản phẩm (Canva AI - Magic Design)</h3>');
         html = html.replace(/<h2>Cách chỉnh sửa và tích hợp của cá nhân<\/h2>/gi, "<h3>Cách chỉnh sửa và tích hợp của cá nhân</h3>");
-        html = html.replace(/<h2>Tôi tải hình ảnh chất lượng cao từ AI về, sử dụng phần mềm đồ họa cá nhân để cắt bỏ một vài chi tiết thừa ở góc camera mà AI vẽ lỗi \(ngón chân rùa bị dị dạng nhẹ\), sau đó tăng độ tương phản để bức ảnh sẵn sàng làm hình nền chủ đạo cho slide\.<\/h2>/gi, "<h3>Cách chỉnh sửa và tích hợp của cá nhân</h3><p>Tôi tải hình ảnh chất lượng cao từ AI về, sử dụng phần mềm đồ họa cá nhân để cắt bỏ một vài chi tiết thừa ở góc camera mà AI vẽ lỗi (ngón chân rùa bị dị dạng nhẹ), sau đó tăng độ tương phản để bức ảnh sẵn sàng làm hình nền chủ đạo cho slide.</p>");
+        html = html.replace(/<h2>Tôi tải hình ảnh chất lượng cao từ AI về, sử dụng phần mềm đồ họa cá nhân để cắt bỏ một vài chi tiết thừa ở góc camera mà AI vẽ lỗi \(ngón chân rùa bị dị dạng nhẹ\), sau đó tăng độ tương phản để bức ảnh sẵn sàng làm hình nền chủ đạo cho slide\.<\/h2>/gi, "<p>Tôi tải hình ảnh chất lượng cao từ AI về, sử dụng phần mềm đồ họa cá nhân để cắt bỏ một vài chi tiết thừa ở góc camera mà AI vẽ lỗi (ngón chân rùa bị dị dạng nhẹ), sau đó tăng độ tương phản để bức ảnh sẵn sàng làm hình nền chủ đạo cho slide.</p>");
         
-        // Correct b) Cách chỉnh sửa H2 heading to H3
-        html = html.replace(/<h2><a id="b\)_Cách_chỉnh_sửa_và_tích_hợp_của_cá_nhâ"><\/a>Cách chỉnh sửa và tích hợp của cá nhân<\/h2>/gi, '<h3><a id="b)_Cách_chỉnh_sửa_và_tích_hợp_của_cá_nhâ"></a>Cách chỉnh sửa và tích hợp của cá nhân</h3>');
+        // Correct b) Cách chỉnh sửa H2 heading to H3 with the specific label 2.3.b)
+        html = html.replace(/<h2><a id="b\)_Cách_chỉnh_sửa_và_tích_hợp_của_cá_nhâ"><\/a>b\) Cách chỉnh sửa và tích hợp của cá nhân<\/h2>/gi, '<h3><a id="b)_Cách_chỉnh_sửa_và_tích_hợp_của_cá_nhâ"></a>2.3.b) Cách chỉnh sửa và tích hợp của cá nhân</h3>');
         
         html = html.replace(/<h2><a id="4\.1\._Những_điểm_mạnh_và_Hạn_chế_cốt_lõi_"><\/a>Những điểm mạnh và Hạn chế cốt lõi của AI<\/h2>/gi, '<h3><a id="4.1._Những_điểm_mạnh_và_Hạn_chế_cốt_lõi_"></a>4.1. Những điểm mạnh và Hạn chế cốt lõi của AI</h3>');
         html = html.replace(/<h2><a id="4\.2\._Sự_thay_đổi_trong_quy_trình_sáng_tạ"><\/a>Sự thay đổi trong quy trình sáng tạo cá nhân<\/h2>/gi, '<h3><a id="4.2._Sự_thay_đổi_trong_quy_trình_sáng_tạ"></a>4.2. Sự thay đổi trong quy trình sáng tạo cá nhân</h3>');
         html = html.replace(/<h2><a id="4\.3\._Các_vấn_đề_đạo_đức_cần_cân_nhắc_"><\/a>Các vấn đề đạo đức cần cân nhắc<\/h2>/gi, '<h3><a id="4.3._Các_vấn_đề_đạo_đức_cần_cân_nhắc_"></a>4.3. Các vấn đề đạo đức cần cân nhắc</h3>');
 
-        // Apply unique stage labels for repeating H3 subheadings
+        // Apply unique stage labels for repeating H3 subheadings 2.1.b) and 2.2.b)
         let gdCount = 0;
-        html = html.replace(/(<h3><a id="[^"]*"><\/a>)?Cách chỉnh sửa và tích hợp của cá nhân<\/h3>/gi, (match) => {
+        html = html.replace(/<h3>(<a id="[^"]*"><\/a>)?Cách chỉnh sửa và tích hợp của cá nhân<\/h3>/gi, (match, anchor) => {
           gdCount++;
-          const labels = ['2.1.b) Cách chỉnh sửa và tích hợp của cá nhân', '2.2.b) Cách chỉnh sửa và tích hợp của cá nhân', '2.3.b) Cách chỉnh sửa và tích hợp của cá nhân'];
-          return `<h3>${labels[gdCount - 1] || 'Cách chỉnh sửa và tích hợp của cá nhân'}</h3>`;
+          const labels = ['2.1.b) Cách chỉnh sửa và tích hợp của cá nhân', '2.2.b) Cách chỉnh sửa và tích hợp của cá nhân'];
+          return `<h3>${anchor || ''}${labels[gdCount - 1] || 'Cách chỉnh sửa và tích hợp của cá nhân'}</h3>`;
         });
 
         // Convert single-item lists to sub-headers
