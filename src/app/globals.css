@@ -57,6 +57,10 @@ body {
   background-color: var(--ceramic-pink-color);
 }
 
+header.fixed.scalloped-bottom {
+  position: fixed;
+}
+
 .scalloped-bottom::after {
   content: "";
   position: absolute;
