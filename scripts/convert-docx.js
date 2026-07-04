@@ -94,17 +94,22 @@ async function convertAll() {
         return `<a id="${letter})_${rest}"></a>${strong || ''}${letter}) `;
       });
 
-      // 4. Flatten sibling nested lists (e.g. <ul><li><ol><li>Title</li></ol></li><li>Item)
-      html = html.replace(/<ul><li><ol><li>([^<]+)<\/li><\/ol><\/li><li>/gi, '<h3>$1</h3><ul><li>');
-      html = html.replace(/<ul><li><ol><li>(<a id="[^"]+"><\/a>)?<strong>([^<]+)<\/strong><\/li><\/ol><\/li><li>/gi, '<h3>$1$2</h3><ul><li>');
+      // 4. Universal nested list unwrapping to prevent double list bullet bugs
+      let prevHtml;
+      do {
+        prevHtml = html;
+        html = html.replace(/<ul><li><ol>/gi, '<ol>');
+        html = html.replace(/<ul><li><ul>/gi, '<ul>');
+        html = html.replace(/<ol><li><ol>/gi, '<ol>');
+        html = html.replace(/<ol><li><ul>/gi, '<ul>');
 
-      // 5. Flatten parent nested lists (e.g. <ul><li><ol><li>Title<ul><li>Item)
-      html = html.replace(/<ul><li><ol><li>([^<]+)<ul><li>/gi, '<h3>$1</h3><ul><li>');
-      html = html.replace(/<ul><li><ol><li>(<a id="[^"]+"><\/a>)?<strong>([^<]+)<\/strong><ul><li>/gi, '<h3>$1$2</h3><ul><li>');
-      html = html.replace(/<ul><li><ol><li>(<a id="[^"]+"><\/a>)?<strong>([^<]+)<\/strong>\s*<ul><li>/gi, '<h3>$1$2</h3><ul><li>');
+        // Corresponding closing tags
+        html = html.replace(/<\/ol><\/li><\/ul>/gi, '</ol>');
+        html = html.replace(/<\/ul><\/li><\/ul>/gi, '</ul>');
+        html = html.replace(/<\/ol><\/li><\/ol>/gi, '</ol>');
+        html = html.replace(/<\/ul><\/li><\/ol>/gi, '</ul>');
+      } while (html !== prevHtml);
       
-      // Fix trailing mismatched closing tags
-      html = html.replace(/<\/ul><\/li><\/ol><\/li><\/ul>/gi, '</ul>');
       html = html.replace(/<ol><li>\s*<\/li><\/ol>/gi, '');
       html = html.replace(/<ul><li>\s*<\/li><\/ul>/gi, '');
 
