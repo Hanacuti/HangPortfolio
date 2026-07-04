@@ -47,7 +47,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col relative">
         <CeramicBackground />
         <Navbar />
-        <main className="flex-1 w-full max-w-7xl mx-auto px-6 py-12 sm:px-8 relative z-10">
+        <main className="flex-1 w-full max-w-7xl mx-auto px-6 pt-24 pb-12 sm:px-8 relative z-10">
           {children}
         </main>
         

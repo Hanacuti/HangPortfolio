@@ -22,7 +22,7 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="sticky top-0 w-full bg-ceramic-pink scalloped-bottom py-3 z-50 transition-all duration-300 shadow-md">
+    <header className="fixed top-0 left-0 w-full bg-ceramic-pink scalloped-bottom py-3 z-50 transition-all duration-300 shadow-md">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         {/* Navigation Bar */}
         <div className="flex h-10 items-center justify-between">
