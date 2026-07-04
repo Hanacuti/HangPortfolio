@@ -211,7 +211,16 @@ async function convertAll() {
         }
         // Map single-item lists to headings
         html = html.replace(/<ol>\s*<li>Các công cụ hợp tác trực tuyến được sử dụng<\/li>\s*<\/ol>/gi, '<h3>Các công cụ hợp tác trực tuyến được sử dụng</h3>');
-        html = html.replace(/<ol>\s*<li>Phân tích hiệu quả của công cụ đối với cá nhân<\/li>\s*<\/ol>/gi, '<h3>Phân tích hiệu quả của công cụ đối với cá nhân</h3>');
+        html = html.replace(/<ol>\s*<li>Phân tích hiệu quả của công cụ đối với cá nhân<\/li>\s*<\/ol>/gi, '<h4>b) Phân tích hiệu quả của công cụ đối với cá nhân</h4>');
+
+        // GDocs and Teams a) and b) H4 subheadings
+        html = html.replace(/<ol>\s*<li>Mô tả hoạt động đóng góp nội dung của cá nhân<\/li>\s*<\/ol>/gi, '<h4>a) Mô tả hoạt động đóng góp nội dung của cá nhân</h4>');
+        html = html.replace(/<ol>\s*<li>Mô tả hoạt động tương tác, thảo luận của cá nhân<\/li>\s*<\/ol>/gi, '<h4>a) Mô tả hoạt động tương tác, thảo luận của cá nhân</h4>');
+        html = html.replace(/<ol>\s*<li>Phân tích hiệu quả và thách thức đối với cá nhân\s*<ul>/gi, '<h4>b) Phân tích hiệu quả và thách thức đối với cá nhân</h4><ul>');
+
+        // Cleanup stray list tags preceding headings or at the end of the file
+        html = html.replace(/<\/li>\s*<\/ol>\s*(<h[1-6][^>]*>)/gi, '$1');
+        html = html.replace(/<\/li>\s*<\/ol>\s*$/gi, '');
 
         // Fix bullet list items
         html = html.replace(/<li>Nhiệm vụ:<\/li>\s*<\/ul>\s*<p>\+\s*Quản lý, sắp xếp lịch trình thực hiện<\/p>\s*<p>\+\s*Tổng hợp kiến thức<\/p>/gi, '<li>Nhiệm vụ:<ul><li>Quản lý, sắp xếp lịch trình thực hiện</li><li>Tổng hợp kiến thức</li></ul></li></ul>');
