@@ -74,6 +74,12 @@ async function convertAll() {
       // POST-PROCESSING: Fix formatting & layout bugs
       // ----------------------------------------------------
 
+      // 0. Clean spelling typos in the raw Word text
+      html = html.replace(/SỬ SỬ DỤNG/gi, "SỬ DỤNG");
+      html = html.replace(/PHÁT TRÌNH KỸ NĂNG/gi, "PHÁT TRIỂN KỸ NĂNG");
+      html = html.replace(/Nâng nâng cao/gi, "Nâng cao");
+      html = html.replace(/Inforgraphic/gi, "Infographic");
+
       // 1. Clean empty list items
       html = html.replace(/<li>\s*(?:&nbsp;|&#xa0;|\u00A0|<br\s*\/?>)*\s*<\/li>/gi, "");
 
@@ -140,7 +146,7 @@ async function convertAll() {
         html = html.replace(/<h2>5\.\s*Tổng hợp nguyên tắc và mẹo viết Prompt hiệu quả<\/h2>/gi, "<h2>5. Tổng hợp nguyên tắc và mẹo viết Prompt hiệu quả</h2>");
         html = html.replace(/<p><strong>2\.1\.\s*Phiên bản 1:\s*Prompt Cơ bản\s*\(Simple Prompt\s*\)<\/strong><\/p>/gi, "<h3>2.1. Phiên bản 1: Prompt Cơ bản (Simple Prompt)</h3>");
         html = html.replace(/<p><strong>2\.2\.\s*Phiên bản 2:\s*Prompt Cải tiến\s*\(Structured Prompt\s*\)<\/strong><\/p>/gi, "<h3>2.2. Phiên bản 2: Prompt Cải tiến (Structured Prompt)</h3>");
-        html = html.replace(/<p><strong>2\.3\.\s*Prompt Nâng nâng cao\s*\(Advanced Prompt\s*-\s*Kết hợp Role-play,\s*Chain-of-Thought\s*và\s*Few-shot\s*\)<\/strong><\/p>/gi, "<h3>2.3. Phiên bản 3: Prompt Nâng cao (Advanced Prompt)</h3>");
+        html = html.replace(/<p><strong>2\.3\.\s*Prompt Nâng cao\s*\(Advanced Prompt\s*-\s*Kết hợp Role-play,\s*Chain-of-Thought\s*và\s*Few-shot\s*\)<\/strong><\/p>/gi, "<h3>2.3. Phiên bản 3: Prompt Nâng cao (Advanced Prompt)</h3>");
       } 
       else if (slug === "su-dung-cong-cu-truc-tuyen-cho-du-an-nhom") {
         if (!html.includes("<h1>SỬ DỤNG CÔNG CỤ TRỰC TUYẾN CHO DỰ ÁN NHÓM</h1>")) {
@@ -173,13 +179,13 @@ async function convertAll() {
         html = html.replace(/<h2><a id="4\.3\._Các_vấn_đề_đạo_đức_cần_cân_nhắc_"><\/a>Các vấn đề đạo đức cần cân nhắc<\/h2>/gi, '<h3><a id="4.3._Các_vấn_đề_đạo_đức_cần_cân_nhắc_"></a>4.3. Các vấn đề đạo đức cần cân nhắc</h3>');
       } 
       else if (slug === "su-dung-ai-co-trach-nhiem-trong-hoc-tap-va-nghien-cuu") {
-        html = html.replace(/<p><strong>PHÁT TRÌNH KỸ NĂNG SỬ SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU<\/strong><\/p>/gi, "<h1>PHÁT TRIỂN KỸ NĂNG SỬ SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU</h1>");
-        html = html.replace(/<p><strong>PHÁT TRIỂN KỸ NĂNG SỬ SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU<\/strong><\/p>/gi, "<h1>PHÁT TRIỂN KỸ NĂNG SỬ SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU</h1>");
+        html = html.replace(/<p><strong>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU<\/strong><\/p>/gi, "<h1>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU</h1>");
+        html = html.replace(/<p><strong>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU<\/strong><\/p>/gi, "<h1>PHÁT TRIỂN KỸ NĂNG SỬ DỤNG AI CÓ TRÁCH NHIỆM VÀ ĐẠO ĐỨC TRONG HỌC TẬP VÀ NGHIÊN CỨU</h1>");
         html = html.replace(/<p><strong>I\.\s*Phân tích chính sách của nhà trường về sử dụng AI trong học thuật<\/strong><\/p>/gi, "<h2>I. Phân tích chính sách của nhà trường về sử dụng AI trong học thuật</h2>");
         html = html.replace(/<p><strong>II\.\s*Nhật ký thực nghiệm:\s*Sử dụng AI hỗ trợ thực hiện nhiệm vụ học tập<\/strong><\/p>/gi, "<h2>II. Nhật ký thực nghiệm: Sử dụng AI hỗ trợ thực hiện nhiệm vụ học tập</h2>");
         html = html.replace(/<p><strong>III\.\s*Phân tích các vấn đề đạo đức liên quan đến AI trong học thuật<\/strong><\/p>/gi, "<h2>III. Phân tích các vấn đề đạo đức liên quan đến AI trong học thuật</h2>");
         html = html.replace(/<p><strong>IV\.\s*Bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm\s*\(6\s*Nguyên tắc\s*\)<\/strong><\/p>/gi, "<h2>IV. Bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm (6 Nguyên tắc)</h2>");
-        html = html.replace(/<p><strong>V\.\s*Inforgraphic minh họa “Sử dụng AI có trách nhiệm trong học tập<\/strong><\/p>/gi, "<h2>V. Infographic minh họa &quot;Sử dụng AI có trách nhiệm trong học tập&quot;</h2>");
+        html = html.replace(/<p><strong>V\.\s*Infographic minh họa “Sử dụng AI có trách nhiệm trong học tập<\/strong><\/p>/gi, "<h2>V. Infographic minh họa &quot;Sử dụng AI có trách nhiệm trong học tập&quot;</h2>");
         html = html.replace(/<p><strong>1\.\s*Ghi lại các prompts đã sử dụng và đầu ra\s*\(Outputs\)\s*của AI<\/strong><\/p>/gi, "<h3>1. Ghi lại các prompts đã sử dụng và đầu ra (Outputs) của AI</h3>");
         html = html.replace(/<p><strong>2\.\s*Đánh giá,\s*chỉnh sửa và tích hợp đầu ra của AI<\/strong><\/p>/gi, "<h3>2. Đánh giá, chỉnh sửa và tích hợp đầu ra của AI</h3>");
         html = html.replace(/<p><strong>3\.\s*Trích dẫn việc sử dụng AI một cách minh bạch\s*\(Mẫu trích dẫn\s*\)<\/strong><\/p>/gi, "<h3>3. Trích dẫn việc sử dụng AI một cách minh bạch (Mẫu trích dẫn)</h3>");
