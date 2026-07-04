@@ -47,17 +47,14 @@ export default async function DocumentPage({ params }: PageProps) {
         </Link>
       </div>
 
-      {/* Document Header Info (Simplified: wordCount and originalName removed) */}
-      <div className="border-b border-ceramic-pink/15 pb-6">
-        <div className="flex flex-wrap gap-3 items-center mb-3">
+      {/* Document Header Info */}
+      <div className="border-b border-ceramic-pink/15 pb-4">
+        <div className="flex flex-wrap gap-3 items-center">
           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-ceramic-pink-light border border-ceramic-pink/15 text-[9px] font-mono text-ceramic-pink uppercase tracking-wider">
             <FileText className="h-3.5 w-3.5" />
-            Tài liệu học thuật
+            Dự án: {doc.title}
           </span>
         </div>
-        <h1 className="text-2xl md:text-4xl font-serif font-extrabold text-ceramic-pink leading-tight">
-          {doc.title}
-        </h1>
       </div>
 
       {/* Main Document Content (Dark Glazed Ceramic Look) */}
