@@ -53,13 +53,9 @@ export default function About() {
                 <span className="text-slate-400 font-mono text-[10px]">ĐẠI HỌC:</span>
                 <span className="text-white font-medium text-right">ĐH Ngoại ngữ - ĐHQGHN (ULIS)</span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-2">
+              <div className="flex justify-between pb-1">
                 <span className="text-slate-400 font-mono text-[10px]">CHUYÊN NGÀNH:</span>
                 <span className="text-white font-medium text-right">Ngôn ngữ Anh</span>
-              </div>
-              <div className="flex justify-between pb-1">
-                <span className="text-slate-400 font-mono text-[10px]">ĐỊNH HƯỚNG:</span>
-                <span className="text-ceramic-mint font-semibold text-right">Ứng dụng CNTT</span>
               </div>
             </div>
           </div>
