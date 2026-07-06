@@ -113,10 +113,10 @@ export default function Experience() {
           </div>
           <div className="pl-2 space-y-4">
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              <strong className="text-white">Điều mình tâm đắc nhất:</strong> Đó là việc vượt qua rào cản công nghệ để tự tay tối ưu và hệ thống hóa toàn bộ các bài tập một cách chỉn chu trên giao diện website này. Nhìn thấy các sản phẩm từ những bước đi &quot;sơ khai&quot; đầu tiên cho đến khi hoàn thiện được trưng bày gọn gàng, mình cảm thấy vô cùng tự hào về sự kiên trì của chính mình.
+              <strong className="text-white">Điều mình tâm đắc nhất:</strong>{" "}Đó là việc vượt qua rào cản công nghệ để tự tay tối ưu và hệ thống hóa toàn bộ các bài tập một cách chỉn chu trên giao diện website này. Nhìn thấy các sản phẩm từ những bước đi &quot;sơ khai&quot; đầu tiên cho đến khi hoàn thiện được trưng bày gọn gàng, mình cảm thấy vô cùng tự hào về sự kiên trì của chính mình.
             </p>
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              <strong className="text-white">Thách thức lớn nhất:</strong> Ban đầu, mình gặp không ít khó khăn trong việc thiết lập bố cục web, quản lý thời gian để hoàn thành đúng hạn các bài tập và việc tìm kiếm nguồn học liệu chuẩn xác, đảm bảo tính liêm chính. Tuy nhiên, nhờ sự kiên trì và chủ động tìm tòi, mình đã biến những áp lực đó thành bài học kinh nghiệm quý giá.
+              <strong className="text-white">Thách thức lớn nhất:</strong>{" "}Ban đầu, mình gặp không ít khó khăn trong việc thiết lập bố cục web, quản lý thời gian để hoàn thành đúng hạn các bài tập và việc tìm kiếm nguồn học liệu chuẩn xác, đảm bảo tính liêm chính. Tuy nhiên, nhờ sự kiên trì và chủ động tìm tòi, mình đã biến những áp lực đó thành bài học kinh nghiệm quý giá.
             </p>
           </div>
         </div>

@@ -287,6 +287,10 @@ async function convertAll() {
         html = html.replace(/<ul>\s*<li><strong>(Prompt \d+ [^<]+)<\/strong><\/li>\s*<\/ul>\s*<p>("[^"]+")<\/p>/gi, '<ul><li><strong>$1</strong> $2</li></ul>');
       }
 
+      // Global Typography Cleanups:
+      // Remove spaces or non-breaking spaces preceding punctuation marks
+      html = html.replace(/([a-zA-Z0-9àáâãèéêìíòóôõùúăđĩũơư\)])(?:\s|&nbsp;)+([,\.:;\?!])/gi, '$1$2');
+
       // Save HTML fragment
       const outputHtmlPath = path.join(OUTPUT_HTML_DIR, `${slug}.html`);
       fs.writeFileSync(outputHtmlPath, html, "utf8");

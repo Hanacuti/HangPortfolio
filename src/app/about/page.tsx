@@ -84,13 +84,13 @@ export default function About() {
               
               <ul className="space-y-4 text-slate-300 text-sm font-sans">
                 <li className="leading-relaxed">
-                  <strong className="text-ceramic-pink font-semibold">• Về bản thân:</strong> Hiện tại, mình đang là sinh viên ngành <em>Ngôn ngữ Anh</em>. Mình tự thấy bản thân là một người khá dễ tính, thân thiện và hướng tới sự tích cực, dù đôi khi cũng có chút &quot;hay cọc&quot; vì những điều bé tí teo trong cuộc sống.
+                  <strong className="text-ceramic-pink font-semibold">• Về bản thân:</strong>{" "}Hiện tại, mình đang là sinh viên ngành <em>Ngôn ngữ Anh</em>. Mình tự thấy bản thân là một người khá dễ tính, thân thiện và hướng tới sự tích cực, dù đôi khi cũng có chút &quot;hay cọc&quot; vì những điều bé tí teo trong cuộc sống.
                 </li>
                 <li className="leading-relaxed">
-                  <strong className="text-ceramic-pink font-semibold">• Sở thích:</strong> Bên cạnh việc học ngôn ngữ, mình là một người cực kỳ yêu thích nghệ thuật. Những lúc rảnh rỗi, mình thường lướt Facebook để cập nhật xu hướng, hoặc thử sức với các bộ môn như đánh đàn, vẽ tranh, móc len và thêu thùa. Dù tự nhận là không có quá nhiều năng khiếu thiên bẩm, nhưng việc tự tay tỉ mẩn làm ra những món đồ nhỏ xinh mang lại cho mình rất nhiều niềm vui và sự kiên nhẫn.
+                  <strong className="text-ceramic-pink font-semibold">• Sở thích:</strong>{" "}Bên cạnh việc học ngôn ngữ, mình là một người cực kỳ yêu thích nghệ thuật. Những lúc rảnh rỗi, mình thường lướt Facebook để cập nhật xu hướng, hoặc thử sức với các bộ môn như đánh đàn, vẽ tranh, móc len và thêu thùa. Dù tự nhận là không có quá nhiều năng khiếu thiên bẩm, nhưng việc tự tay tỉ mẩn làm ra những món đồ nhỏ xinh mang lại cho mình rất nhiều niềm vui và sự kiên nhẫn.
                 </li>
                 <li className="leading-relaxed">
-                  <strong className="text-ceramic-pink font-semibold">• Mục tiêu học tập &amp; Định hướng phát triển:</strong> Trong tương lai gần, mình hướng tới việc nắm vững các kiến thức nền tảng cốt lõi của ngành Ngôn ngữ Anh, đồng thời tích cực trau dồi các kỹ năng số để không bị tụt hậu trong thời đại công nghệ. Định hướng nghề nghiệp rõ ràng của mình là trở thành một <em>Phiên dịch viên chuyên nghiệp</em> trong vòng 2-3 năm tới.
+                  <strong className="text-ceramic-pink font-semibold">• Mục tiêu học tập &amp; Định hướng phát triển:</strong>{" "}Trong tương lai gần, mình hướng tới việc nắm vững các kiến thức nền tảng cốt lõi của ngành Ngôn ngữ Anh, đồng thời tích cực trau dồi các kỹ năng số để không bị tụt hậu trong thời đại công nghệ. Định hướng nghề nghiệp rõ ràng của mình là trở thành một <em>Phiên dịch viên chuyên nghiệp</em> trong vòng 2-3 năm tới.
                 </li>
               </ul>
             </div>
@@ -107,13 +107,13 @@ export default function About() {
                 <li className="flex gap-3 leading-relaxed">
                   <span className="text-ceramic-pink font-bold">•</span>
                   <div>
-                    <strong className="text-white">Minh chứng năng lực:</strong> Hệ thống và thể hiện lại toàn bộ các kỹ năng số, tư duy công nghệ và sự nhạy bén mà mình đã tích lũy được qua từng bài học.
+                    <strong className="text-white">Minh chứng năng lực:</strong>{" "}Hệ thống và thể hiện lại toàn bộ các kỹ năng số, tư duy công nghệ và sự nhạy bén mà mình đã tích lũy được qua từng bài học.
                   </div>
                 </li>
                 <li className="flex gap-3 leading-relaxed">
                   <span className="text-ceramic-pink font-bold">•</span>
                   <div>
-                    <strong className="text-white">Kho lưu trữ cá nhân:</strong> Lưu trữ trực quan các sản phẩm, bài tập thực hành để dễ dàng theo dõi sự tiến bộ của bản thân, đồng thời sẵn sàng chia sẻ với bạn bè, giảng viên hoặc các nhà tuyển dụng tương lai.
+                    <strong className="text-white">Kho lưu trữ cá nhân:</strong>{" "}Lưu trữ trực quan các sản phẩm, bài tập thực hành để dễ dàng theo dõi sự tiến bộ của bản thân, đồng thời sẵn sàng chia sẻ với bạn bè, giảng viên hoặc các nhà tuyển dụng tương lai.
                   </div>
                 </li>
               </ul>
