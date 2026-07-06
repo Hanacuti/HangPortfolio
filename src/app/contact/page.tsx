@@ -15,7 +15,7 @@ export default function Contact() {
       </div>
 
       {/* Centered Direct Contact Tile */}
-      <div className="flex flex-col items-center justify-center py-10">
+      <div className="flex flex-col items-center justify-center py-6">
         <div className="bento-card max-w-xl w-full p-8 md:p-10 flex flex-col items-center text-center gap-6">
           {/* Sealed Envelope / Mail Icon Graphic */}
           <div className="w-20 h-20 rounded-full bg-ceramic-pink-light border-2 border-ceramic-pink/20 flex items-center justify-center relative group ceramic-shadow">
@@ -24,8 +24,17 @@ export default function Contact() {
           </div>
           
           <div>
+            <h2 className="text-2xl font-serif font-bold text-white mb-4">
+              Kết nối với mình nhé! ✉️
+            </h2>
+            <p className="text-slate-300 text-sm leading-relaxed max-w-md font-sans mb-6">
+              Cảm ơn bạn rất nhiều vì đã dành thời gian ghé thăm và lắng nghe câu chuyện hành trình của mình. Nếu bạn muốn trao đổi về ngành Ngôn ngữ Anh, các món đồ thủ công làm bằng tay, hoặc có cơ hội hợp tác trong công việc, đừng ngần ngại liên hệ với mình qua các kênh dưới đây nhé:
+            </p>
+          </div>
+
+          <div className="w-full border-t border-b border-white/5 py-4 my-2">
             <h3 className="text-xs font-mono uppercase text-slate-400 tracking-wider">
-              Email học thuật chính thức
+              Email liên hệ:
             </h3>
             <a
               href="mailto:hanacuti0507@gmail.com"
@@ -35,13 +44,9 @@ export default function Contact() {
             </a>
           </div>
 
-          <p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-md font-sans">
-            Tôi rất hân hạnh được đón nhận các ý kiến thảo luận khoa học, cơ hội tham gia dự án nghiên cứu ngôn ngữ, EdTech, hoặc các thư mời hợp tác học thuật. Hãy liên hệ với tôi qua địa chỉ email trên.
+          <p className="text-slate-300 text-xs md:text-sm font-sans italic mt-2">
+            Chúc bạn luôn có những trải nghiệm tuyệt vời và một ngày thật tốt lành!
           </p>
-
-          <div className="w-full border-t border-white/5 pt-6 mt-2 text-[10px] text-slate-400 font-mono">
-            Mọi phản hồi sẽ được gửi trong vòng 24 giờ làm việc.
-          </div>
         </div>
       </div>
     </div>

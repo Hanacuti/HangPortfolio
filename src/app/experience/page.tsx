@@ -6,7 +6,9 @@ import {
   Award, 
   Cpu, 
   Users, 
-  BookOpen 
+  BookOpen,
+  Trophy,
+  Sparkles
 } from "lucide-react";
 
 export default function Experience() {
@@ -34,58 +36,84 @@ export default function Experience() {
       >
         {/* Intro */}
         <div className="border-b border-white/5 pb-6">
+          <h2 className="text-xl font-serif font-bold text-white mb-3">
+            Nhìn lại hành trình xây dựng Portfolio 💫
+          </h2>
           <p className="text-slate-300 text-sm md:text-base leading-relaxed font-sans">
-            Nhìn lại toàn bộ chặng đường từ những nét phác thảo đầu tiên cho trang Portfolio này đến khi đặt dấu chấm hết cho bài tập cuối cùng, trong tôi đọng lại niềm tự hào lớn lao. Việc vừa phải dung nạp một khối lượng kiến thức mới, vừa phải trăn trở thiết kế giao diện sao cho tối ưu và trực quan là một bài toán không hề đơn giản. Thế nhưng, chính trải nghiệm thực tế &quot;học đi đôi với hành&quot; ấy đã trở thành thước đo chính xác nhất cho sự trưởng thành và tiến bộ của tôi qua từng tuần.
+            Hành trình xây dựng trang portfolio này không chỉ đơn thuần là một bài tập điều kiện, mà đã trở thành một cuốn nhật ký trực quan, ghi lại trọn vẹn sự trưởng thành và nỗ lực của mình trong môi trường số.
           </p>
         </div>
 
-        {/* Section 1: Digital Skills & AI */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-white/5 pb-6">
-          <div className="md:col-span-1 flex items-start mt-1">
-            <div className="p-2 rounded-xl bg-ceramic-pink-light border border-ceramic-pink/10">
-              <Cpu className="h-5 w-5 text-ceramic-pink" />
-            </div>
+        {/* Section 1: Skills acquired */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-2 text-ceramic-pink">
+            <Sparkles className="h-5 w-5" />
+            <h2 className="text-lg font-serif font-bold text-white">Những kiến thức & Kỹ năng quan trọng đã gặt hái được:</h2>
           </div>
-          <div className="md:col-span-11 space-y-2">
-            <h3 className="text-base font-serif font-bold text-white">
-              1. Nâng tầm kỹ năng số và tư duy cộng tác cùng AI
-            </h3>
-            <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              Môn học đã trang bị cho tôi những kỹ năng số mang tính ứng dụng cao trong thực tế. Thay vị phụ thuộc thụ động, tôi đã biết cách làm chủ và &quot;giao tiếp&quot; hiệu quả với các trợ lý AI để tối ưu hóa quá trình học tập. Bên cạnh đó, tư duy quản lý dữ liệu một cách khoa học cùng việc thành thạo các nền tảng trực tuyến đã giúp tôi kết nối, phối hợp với các thành viên trong nhóm một cách nhịp nhàng và chuyên nghiệp hơn.
-            </p>
+          
+          <div className="flex flex-col gap-6 pl-2">
+            {/* Skill 1: Tư duy công nghệ */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-white/5 pb-6">
+              <div className="md:col-span-1 flex items-start mt-1">
+                <div className="p-2 rounded-xl bg-ceramic-pink-light border border-ceramic-pink/10">
+                  <Cpu className="h-5 w-5 text-ceramic-pink" />
+                </div>
+              </div>
+              <div className="md:col-span-11 space-y-2">
+                <h3 className="text-base font-serif font-bold text-white">
+                  Tư duy công nghệ &amp; Dữ liệu
+                </h3>
+                <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
+                  Hiểu rõ cấu trúc máy tính, biết cách khai thác thông tin hiệu quả và có cái nhìn tổng quan về Trí tuệ nhân tạo (AI) – một công cụ bổ trợ đắc lực cho ngành ngôn ngữ hiện nay.
+                </p>
+              </div>
+            </div>
+
+            {/* Skill 2: Kỹ năng làm việc trực tuyến */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-white/5 pb-6">
+              <div className="md:col-span-1 flex items-start mt-1">
+                <div className="p-2 rounded-xl bg-ceramic-pink-light border border-ceramic-pink/10">
+                  <Users className="h-5 w-5 text-ceramic-pink" />
+                </div>
+              </div>
+              <div className="md:col-span-11 space-y-2">
+                <h3 className="text-base font-serif font-bold text-white">
+                  Kỹ năng làm việc trực tuyến
+                </h3>
+                <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
+                  Nâng cao năng lực giao tiếp, hợp tác hiệu quả trong môi trường số và đặc biệt là ý thức rất rõ về an toàn thông tin cũng như tính liêm chính học thuật.
+                </p>
+              </div>
+            </div>
+
+            {/* Skill 3: Kỹ năng sáng tạo nội dung */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-2">
+              <div className="md:col-span-1 flex items-start mt-1">
+                <div className="p-2 rounded-xl bg-ceramic-pink-light border border-ceramic-pink/10">
+                  <BookOpen className="h-5 w-5 text-ceramic-pink" />
+                </div>
+              </div>
+              <div className="md:col-span-11 space-y-2">
+                <h3 className="text-base font-serif font-bold text-white">
+                  Kỹ năng sáng tạo nội dung
+                </h3>
+                <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
+                  Tự tay thiết kế, chuyển hóa các lý thuyết khô khan thành sản phẩm thực tế (file PDF, video, hình ảnh) và biết cách tự triển khai một trang web/blog cá nhân hoàn chỉnh từ con số 0.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Section 2: Ethics & Information Filtering */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-white/5 pb-6">
-          <div className="md:col-span-1 flex items-start mt-1">
-            <div className="p-2 rounded-xl bg-ceramic-pink-light border border-ceramic-pink/10">
-              <Users className="h-5 w-5 text-ceramic-pink" />
-            </div>
+        {/* Section 2: Trophy & Achievements */}
+        <div className="border-t border-white/5 pt-8 space-y-4">
+          <div className="flex items-center gap-2 text-ceramic-pink">
+            <Trophy className="h-5 w-5" />
+            <h2 className="text-lg font-serif font-bold text-white">Điểm tâm đắc &amp; Thách thức đã vượt qua:</h2>
           </div>
-          <div className="md:col-span-11 space-y-2">
-            <h3 className="text-base font-serif font-bold text-white">
-              2. Trách nhiệm số và bộ lọc tư duy phản biện
-            </h3>
+          <div className="pl-2">
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              Một trong những giá trị lớn nhất tôi gặt hái được chính là ý thức bảo mật thông tin và tinh thần tôn trọng quyền tác giả trên không gian mạng. Trong bối cảnh bùng nổ thông tin và sự trỗi dậy của công nghệ AI, việc xác thực độ tin cậy của dữ liệu là một thử thách không nhỏ. Tôi đã rèn luyện cho mình thói quen tư duy phản biện, chủ động đối chiếu đa nguồn để đảm bảo tính chính xác cho mọi nội dung. Vượt qua sự cám dỗ của việc &quot;ỷ lại&quot; vào công nghệ chính là bước tiến lớn nhất của tôi.
-            </p>
-          </div>
-        </div>
-
-        {/* Section 3: Autonomy & Motivation */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-2">
-          <div className="md:col-span-1 flex items-start mt-1">
-            <div className="p-2 rounded-xl bg-ceramic-pink-light border border-ceramic-pink/10">
-              <BookOpen className="h-5 w-5 text-ceramic-pink" />
-            </div>
-          </div>
-          <div className="md:col-span-11 space-y-2">
-            <h3 className="text-base font-serif font-bold text-white">
-              3. Làm chủ công nghệ và chuyển hóa tri thức ngôn ngữ
-            </h3>
-            <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans">
-              Điều khiến tôi tâm đắc nhất là việc biến các công cụ hiện đại thành phương tiện để hiện thực hóa ý tưởng của chính mình. Cảm giác nhìn những lý thuyết học thuật khô khan trên sách vở được chuyển hóa thành một không gian Portfolio trực quan, gọn gàng đã tiếp thêm cho tôi rất nhiều động lực. Hành trình này là minh chứng rõ ràng cho thấy tôi hoàn toàn có thể tự chủ trong học tập và tự tin làm chủ công nghệ trong kỷ nguyên số.
+              <strong className="text-white">Điều mình tâm đắc nhất:</strong> Đó là việc vượt qua rào cản công nghệ để tự tay tối ưu và hệ thống hóa toàn bộ các bài tập một cách chỉn chu trên giao diện website này. Nhìn thấy các sản phẩm từ những bước đi &quot;sơ khai&quot; đầu tiên cho đến khi hoàn thiện được trưng bày gọn gàng, mình cảm thấy vô cùng tự hào về sự kiên trì của chính mình.
             </p>
           </div>
         </div>
@@ -95,7 +123,7 @@ export default function Experience() {
           <span>Nguyễn Minh Hằng • ULIS VNU</span>
           <span className="flex items-center gap-1.5 text-ceramic-pink font-semibold">
             <Award className="h-4 w-4" />
-            Độc lập & Tự chủ
+            Độc lập &amp; Tự chủ
           </span>
         </div>
       </motion.div>
